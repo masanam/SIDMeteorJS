@@ -1,0 +1,49 @@
+<md-card class="md-no-whitespace">
+    <div layout="row" layout-padding>
+      <div flex>Filters</div>
+
+      <md-menu class=" md-condensed">
+        <md-button class="md-icon-button md-condensed" ng-click="$mdMenu.open()">
+          <md-icon md-svg-icon="dots-vertical"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="resetFilter()">
+              <md-icon md-svg-icon="restart"></md-icon>
+              Reset Filter
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="downloadXLS()">
+              <md-icon md-svg-icon="file-excel"></md-icon>
+              Download as XLS
+            </md-button>
+          </md-menu-item>
+          <md-divider></md-divider>
+        </md-menu-content>
+      </md-menu>
+    </div>
+
+    <md-divider></md-divider>
+
+    <md-content layout-padding flex>
+      <md-switch ng-model="filter.role" aria-label="filter-employee-visitor">
+        <span ng-if="filter.role">Visitors</span>
+        <span ng-if="!filter.role">Employees</span>
+      </md-switch>
+
+      <div>
+        <md-datepicker ng-model="filter.slated" style="margin-left:-10px" flex placeholder="Date Slated"></md-datepicker><br>
+        <md-datepicker ng-model="filter.due" style="margin-left:-10px" flex placeholder="Date Due"></md-datepicker>
+
+        <md-select ng-model="filter.status" placeholder="Search By Status">
+          <md-option value="">- Search By Status -</md-option>
+          <md-option value="u">Denied</md-option>
+          <md-option value="s">Success</md-option>
+        </md-select>
+
+        <employee-autocomplete ng-if= "!filter.role" model="filter.employee" label="'Search by Name'"></employee-autocomplete>
+        <visitor-autocomplete ng-if="filter.role" model="filter.visitor" label="'Search by Name'"></visitor-autocomplete>
+      </div>
+    </md-content>
+</md-card>

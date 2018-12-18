@@ -1,0 +1,10 @@
+<md-toolbar class="md-theme-indigo">
+  <h1 class="md-toolbar-tools">Projects</h1>
+</md-toolbar>
+<md-content layout-padding ng-controller="ProjectsController">
+  <div flex="100" ng-repeat="project in projects">
+    <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+      {{ project.callsign }}
+    </md-checkbox>
+  </div>
+</md-content>

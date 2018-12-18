@@ -1,0 +1,47 @@
+<section layout-align="center" layout="row" layout-padding>
+  <form ng-init="resetForm()" ng-submit="send()" flex=60>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Create New Invitations in Bulk</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content ng-init="invitation.emailList = []">
+        <md-chips
+          ng-model="invitation.emailList"
+          md-removable="true"
+          md-enable-chip-edit="true"
+          md-separator-keys="[9, 13, 32, 186, 188]"
+          placeholder="Emails"
+          type="email"
+          ng-required="true">
+        </md-chips>
+        <div ng-message="display.required">{{display.required}}</div>
+        <div class="notice">Fill in list of email, separate with space, semicolon, enter or comma</div>
+
+        <md-input-container class="md-block">
+          <label>Message</label>
+          <textarea ng-model="invitation.message" md-maxlength="100" rows="2" md-select-on-focus required></textarea>
+        </md-input-container>
+
+        <div ng-if="display.error" class="error-notice">
+          {{ display.error }}
+        </div>
+
+      </md-card-content>
+
+
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Send</md-button>
+        <md-button ng-click="resetForm()">Reset Form</md-button>
+        <md-button ui-sref="invitation.list">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

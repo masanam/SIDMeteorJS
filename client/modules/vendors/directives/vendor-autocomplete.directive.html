@@ -1,0 +1,19 @@
+
+  <md-autocomplete
+    ng-required="required"
+    md-search-text="q"
+    md-items="item in vendors"
+    md-selected-item="selected"
+    md-item-text="item.legalName"
+    md-selected-item-change="model = selected._id"
+    md-min-length="3"
+    placeholder="{{label}}">
+
+    <md-item-template>
+      <span md-highlight-text="q" md-highlight-flags="^i">{{ item.legalName }}</span>
+    </md-item-template>
+
+    <md-not-found>
+      No vendors matching "{{q}}" were found.
+    </md-not-found>
+  </md-autocomplete>

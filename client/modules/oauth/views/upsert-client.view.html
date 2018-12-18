@@ -1,0 +1,66 @@
+<div layout="row">
+  <md-button class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="oauth.list-client">Clients</md-button>
+
+  <span ng-if="client._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="oauth.upsert-client({ id: id })">{{ client.clientName }}</md-button>
+  </span>
+
+  <span ng-if="!client._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="oauth.upsert-client">Create</md-button>
+  </span>
+
+  <span flex></span>
+  <md-button ui-sref="oauth.upsert-client">
+    <md-icon md-svg-icon="plus"></md-icon>
+    Add New
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<section ng-init="findOne(); resetForm(); makeRandomSecret();">
+  <form ng-submit="upsertClient(client)" role="form" layout="column" style="color:grey;" layout-padding>
+    <md-input-container class="md-icon-float md-block">
+      <label>Client ID</label>
+      <input ng-model="client.clientId" type="text" required>
+    </md-input-container>
+
+    <md-input-container class="md-icon-float md-block">
+      <label>Redirect URI</label>
+      <input ng-model="client.redirectUri" type="text" required>
+    </md-input-container>
+
+    <md-input-container class="md-icon-float md-block">
+      <label>Client Name</label>
+      <input ng-model="client.clientName" type="text" required>
+    </md-input-container>
+
+    <div layout="row">
+      <md-input-container class="md-icon-float md-block" flex=90>
+        <label>Client Secret</label>
+        <input ng-model="client.clientSecret" ng-attr-type="{{ showPassword ? 'text' : 'password' }}" required>
+      </md-input-container>
+      <md-button class="md-icon-button" ng-click="makeRandomSecret()" flex=4>
+        <md-tooltip>Generate Random Password (Recommended)</md-tooltip>
+        <md-icon md-svg-icon="lock-reset"></md-icon>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="showPassword = !showPassword" flex=3>
+        <md-tooltip>{{ showPassword ? 'Hide Password' : 'Show Password' }}</md-tooltip>
+        <md-icon md-svg-icon="{{ showPassword ? 'eye-off' : 'eye' }}"></md-icon>
+      </md-button>
+      <md-button class="md-icon-button" ngclipboard data-clipboard-text="{{client.clientSecret}}" flex=3>
+        <md-tooltip>Copy To Clipboard</md-tooltip>
+        <md-icon md-svg-icon="content-copy"></md-icon>
+      </md-button>
+    </div>
+
+    <div layout-align="center" layout="row">
+      <md-button type="submit" class="md-raised md-primary">Submit</md-button>
+      <md-button type="reset">Reset</md-button>
+    </div>
+  </form>
+</section>

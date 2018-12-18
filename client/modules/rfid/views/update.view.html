@@ -1,0 +1,38 @@
+<section layout-align="center center" layout="row" layout-padding>
+  <form ng-init="findOne()" ng-submit="update(rfid)" flex=60>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Update This Card</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+            <label>Card Number</label>
+            <input ng-model="rfid.rfid" ng-disabled=true>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Due date</label>
+            <md-datepicker ng-model="rfid.due"></md-datepicker>
+          </md-input-container>
+        </div>
+        
+        <employee-autocomplete model="rfid.employee" label="'Employee'" ng-if="rfid.employee" required="false"></employee-autocomplete>
+
+        <visitor-autocomplete model="rfid.visitor" label="'Visitor'" ng-if="rfid.visitor" required="false"></visitor-autocomplete>
+      </md-card-content>
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Update</md-button>
+        <md-button ui-sref="rfid.list">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

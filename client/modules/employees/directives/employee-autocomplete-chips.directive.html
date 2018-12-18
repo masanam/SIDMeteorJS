@@ -1,0 +1,20 @@
+<md-chips ng-model="model"
+  md-transform-chip="$chip = $chip._id"
+  md-autocomplete-snap>
+  <md-autocomplete
+    md-search-text="q"
+    md-items="item in employees"
+    md-item-text="item.name"
+    md-min-length="3"
+    placeholder="{{label}}">
+
+    <span md-highlight-text="q" md-highlight-flags="^i">{{item.name}}</span>
+  </md-autocomplete>
+
+  <md-chip-template>
+      <span>
+        <strong><employee id="$chip"></employee></strong>
+      </span>
+  </md-chip-template>
+
+  </md-chips>

@@ -1,0 +1,85 @@
+<md-card flex>
+  <md-card-title layout="row">
+    <md-card-title-text flex=25>
+      <span class="md-headline">{{ rfid.rfid }}</span>
+    </md-card-title-text>
+    <span flex></span>
+    <md-card-actions layout="row" layout-align="end center" flex=30 style="margin-top:-5px;">
+      <md-button class="md-icon-button" ui-sref="rfid.update({ id: rfid._id })">
+        <md-icon md-svg-icon="pencil"></md-icon>
+        <md-tooltip>Edit</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="delete(rfid)">
+        <md-icon md-svg-icon="delete"></md-icon>
+        <md-tooltip>Delete</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ui-sref="rfid.list">
+        <md-icon md-svg-icon="close"></md-icon>
+        <md-tooltip>Back</md-tooltip>
+      </md-button>
+    </md-card-actions>
+  </md-card-title>
+</md-card>
+
+
+<div layout="row">
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <tbody md-body>
+          <tr ng-if="rfid.asset" md-row>
+            <td md-cell>Asset</td>
+            <td md-cell><asset id="rfid.asset"></td>
+          </tr>
+          <tr ng-if="rfid.employee" md-row>
+            <td md-cell>Employee</td>
+            <td md-cell><employee id="rfid.employee"></td>
+          </tr>
+          <tr ng-if="rfid.visitor" md-row>
+            <td md-cell>Visitor</td>
+            <td md-cell><visitor id="rfid.visitor"></td>
+          </tr>
+
+          <!-- <tr md-row>
+            <td md-cell>Issued</td>
+            <td md-cell>{{rfid.issued | date }}</td>
+          </tr>
+          <tr md-row>
+            <td md-cell>Slated</td>
+            <td md-cell>{{rfid.slated | date }}</td>
+          </tr> -->
+          <tr md-row>
+            <td md-cell>Due Date</td>
+            <td md-cell>{{rfid.due | date }}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Created</td>
+            <td md-cell>{{rfid.created | date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+</div>
+
+<md-card ng-if="rfid.history">
+  <div layout-padding>
+    <p>Usage History</p>
+  </div>
+
+  <md-divider></md-divider>
+
+  <div ng-repeat="h in rfid.history">
+    <div layout="row">
+      <span layout-padding flex>
+        <asset id="h.asset" ng-if="h.asset"></asset>
+        <employee id="h.employee" ng-if="h.employee"></employee>
+        <visitor id="h.visitor" ng-if="h.visitor"></visitor>
+      </span>
+      <span layout="row" layout-align="end" layout-padding flex>{{ h.due | date }}</span>
+    </div>
+
+    <md-divider></md-divider>
+  </div>
+</md-card>

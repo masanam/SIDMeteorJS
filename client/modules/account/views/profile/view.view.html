@@ -1,0 +1,86 @@
+<section layout-align="center center" layout="row">
+  <md-card flex=60>
+    <md-card-title>
+      <md-card-title-text>
+        <h1 class="md-headline" ng-if="!display.edit">Update {{ currentUser.profile.name }}</h1>
+        <h1 class="md-headline" ng-if="display.edit">Your Profile</h1>
+      </md-card-title-text>
+    </md-card-title>
+
+    <md-button ng-if="!display.edit" ng-click="display.edit = !display.edit">
+      <md-icon md-svg-icon="pencil"></md-icon>
+      Edit Profile
+    </md-button>
+
+    <md-table-container ng-if="!display.edit">
+      <table md-table>
+        <tbody md-body>
+          <tr md-row>
+            <td md-cell>Name</td>
+            <td md-cell>{{ currentUser.profile.name }}</td>
+          </tr>
+          <tr md-row>
+            <td md-cell>Username</td>
+            <td md-cell>{{ currentUser.username }}</td>
+          </tr>
+          <tr md-row>
+            <td md-cell>Phone</td>
+            <td md-cell>{{ currentUser.profile.phone }}</td>
+          </tr>
+          <tr md-row>
+            <td md-cell>Image</td>
+            <td md-cell>{{ currentUser.profile.image }}</td>
+          </tr>
+          <tr md-row><td md-cell></td><td md-cell></td></tr>
+          <tr md-row>
+            <td md-cell>
+              Password
+              <md-button ui-sref="account.password" class="md-icon-button">
+                <md-icon md-svg-icon="pencil"></md-icon>
+              </md-button>
+            </td>
+            <td md-cell>****************</td>
+          </tr>
+          <tr md-row>
+            <td md-cell>
+              Emails
+              <md-button ui-sref="account.emails" class="md-icon-button">
+                <md-icon md-svg-icon="pencil"></md-icon>
+              </md-button>
+            </td>
+            <td md-cell>
+              <div ng-repeat="e in currentUser.emails">{{ e.address }}</div>
+            </td>
+          </tr>
+          <tr md-row>
+            <td md-cell>
+              Teams
+              <md-button ui-sref="account.teams" class="md-icon-button">
+                <md-icon md-svg-icon="pencil"></md-icon>
+              </md-button>
+            </td>
+            <td md-cell>
+              <team id="currentUser.currentTeam"></team>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+
+    <form ng-if="display.edit" ng-init="findOne()" ng-submit="update(user)">
+        <md-divider></md-divider>
+
+        <md-card-content>
+          <div ng-include="'/client/modules/account/views/profile/_form.partial.html'"></div>
+        </md-card-content>
+
+        <md-divider></md-divider>
+
+        <md-card-action>
+          <md-button class="md-raised md-primary" type="submit">Update</md-button>
+          <md-button ng-click= "display.edit = !display.edit">Cancel</md-button>
+        </md-card-action>
+    </form>
+
+  </md-card>
+</section>

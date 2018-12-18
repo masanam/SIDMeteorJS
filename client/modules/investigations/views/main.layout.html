@@ -1,0 +1,32 @@
+<div layout="row">
+  <md-button aria-label="home" class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="investigations.list">Investigations</md-button>
+
+  <span ng-if="investigation._id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>{{ investigation.nickname }}'s Case</md-button>
+  </span>
+
+  <span ng-if="!investigation._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="investigations.create">Create</md-button>
+  </span>
+
+  <span ng-if="no">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>Details</md-button>
+  </span>
+
+  <span flex></span>
+  <md-button ui-sref="investigations.create">
+    <md-icon md-svg-icon="plus"></md-icon>
+    Report Incident
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<md-content flex>
+  <ui-view></ui-view>
+</md-content>

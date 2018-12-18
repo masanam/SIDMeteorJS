@@ -1,0 +1,26 @@
+<section layout-align="center" ng-controller="TeamsController" layout="row">
+
+  <form ng-init="findOne()" ng-submit="update(team)" flex=80>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 ng-if="display.id" class="md-headline">Update Your Team</h1>
+          <h1 ng-if="!display.id" class="md-headline">Create Your Team</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <div ng-include="'/client/modules/account/views/teams/details/_form-details.partial.html'" layout-padding></div>
+
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" ng-if="display.id" type="submit">Update</md-button>
+        <md-button class="md-raised md-primary" ng-if="!display.id" type="submit">Create</md-button>
+        <md-button ui-sref="account.teams">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

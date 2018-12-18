@@ -1,0 +1,28 @@
+<section layout-align="center center" layout="row" ng-controller="EmployeeFormController" layout-padding>
+  <form ng-init="display.edit = true; findOne()" ng-submit="update(employee)" flex=60>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Update {{ employee.firstName }} {{ employee.lastName }}</span>
+          <span class="md-subhead">Contact Data</span>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content ng-include="'/client/modules/employees/views/contact/_form.partial.html'">
+      </md-card-content>
+
+      <md-divider></md-divider>
+
+      <md-card-action >
+        <div layout="row">
+          <md-button ui-sref="employees.update-personal({ id: employee._id })">Back</md-button>
+          <md-button ui-sref="employees.list">Cancel</md-button>
+          <span flex></span>
+          <md-button class="md-raised md-primary" type="submit">Next</md-button>
+        </div>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

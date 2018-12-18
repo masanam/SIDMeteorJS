@@ -1,0 +1,89 @@
+<section layout-align="center center" layout="row" layout-padding flex>
+  <form ng-init="findOne(); init()" ng-submit="update(visitor)" flex=60>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Update {{ visitor.name }}</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content>
+        <div style="background:rgba(255,255,255,0.5); border:solid 1px rgba(0,0,0,0.1); border-radius:5px; margin-top:5px">
+          <div class="md-headline" layout-padding>GENERAL DATA</div>
+
+          <md-divider></md-divider>
+
+          <div ng-include="'/client/modules/visitors/views/_form-general.partial.html'"></div>
+
+        </div>
+
+        <div style="background:rgba(255,255,255,0.5); border:solid 1px rgba(0,0,0,0.1); border-radius:5px; margin-top:5px">
+          <div class="md-headline" layout-padding layout="row">
+            <span>VISITOR DATA</span>
+          </div>
+          <md-divider></md-divider>
+          <div layout="row" style="padding:10px">
+            <md-input-container class="md-block" flex>
+              <label>Name</label>
+              <input ng-model="visitor.name" name="name" required>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex>
+              <label>Position</label>
+              <input ng-model="visitor.position" name="position" required>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex="20">
+              <label>Age</label>
+              <input ng-model="visitor.age" name="age" required ng-pattern="/^[0-9]*$/">
+            </md-input-container>
+          </div>
+
+          <div layout="row" style="padding:10px">
+            <md-input-container class="md-block" flex>
+              <label>Phone</label>
+              <input ng-model="visitor.phone" required name="phone">
+            </md-input-container>
+
+            <md-input-container class="md-block" flex>
+              <label>Email</label>
+              <input ng-model="visitor.email" required name="email" type="email">
+            </md-input-container>
+          </div>
+
+          <div layout="row" style="padding:10px">
+          <md-input-container class="md-block" flex>
+            <label>Address</label>
+            <textarea ng-model="visitor.address" md-maxlength="300" rows="2" md-select-on-focus name="address" required></textarea>
+          </md-input-container>
+          </div>
+          <div layout="row" style="padding:10px">
+            <md-input-container class="md-block" flex>
+              <label>Identity Type</label>
+              <md-select ng-model="visitor.identityType" name="identityType" required>
+                <md-option ng-repeat="identity in select.identityTypes" value="{{identity}}">{{identity}}</md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex>
+              <label>Identity Number</label>
+              <input ng-model="visitor.identityNo" required name="identityNo">
+            </md-input-container>
+          </div>
+        </div>
+
+      </md-card-content>
+
+
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Update</md-button>
+        <md-button ui-sref="visitors.list">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

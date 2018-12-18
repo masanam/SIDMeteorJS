@@ -1,0 +1,49 @@
+<section ng-init="find(); findOne()" layout="row" flex>
+  <div flex=15 ng-include="'/client/modules/vendors/views/_filter.partial.html'">
+  </div>
+
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Name</th>
+            <th md-column>Legal Name</th>
+            <th md-column ng-if="!display.id">Website</th>
+            <th md-column ng-if="!display.id">Status</th>
+
+            <th md-column ng-if="!display.id"></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="v in vendors">
+            <td md-cell><a ui-sref="vendors.view({ id:v._id })">{{v.name}}</a></td>
+            <td md-cell>{{v.legalName}}</td>
+            <td md-cell ng-if="!display.id">{{v.website }}</td>
+            <td md-cell ng-if="!display.id" ng-switch="v.status">
+              <span ng-switch-when="a">Approved</span>
+              <span ng-switch-when="p">Pending</span>
+              <span ng-switch-when="r">Rejected</span>
+              <span ng-switch-when="c">Cancelled</span>
+            </td>
+            <td md-cell ng-if="!display.id">
+              <md-button class="md-icon-button" ui-sref="vendors.update({ id: v._id })">
+                <md-icon md-svg-icon="pencil"></md-icon>
+                <md-tooltip>Edit</md-tooltip>
+              </md-button>
+              <md-button class="md-icon-button" ng-click="delete(v)">
+                <md-icon md-svg-icon="delete"></md-icon>
+                <md-tooltip>Delete</md-tooltip>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+    <md-table-pagination md-limit="filter.limit" md-limit-options="[20, 50, 100]" md-page="filter.page" md-total="{{vendorsCount}}" md-page-select></md-table-pagination>
+  </md-card>
+
+  <div flex=50 ng-if="display.id" ng-include="'/client/modules/vendors/views/_details.partial.html'">
+  </div>
+
+</section>

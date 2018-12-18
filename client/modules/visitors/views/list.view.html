@@ -1,0 +1,54 @@
+<section ng-init="find(); findOne()" layout="row" flex>
+  <div flex=15 ng-include="'/client/modules/visitors/views/_filter.partial.html'">
+  </div>
+
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column ng-if="!display.id">Validity</th>
+            <th md-column>Name</th>
+            <th md-column>Institution</th>
+            <th md-column ng-if="!display.id">Sponsor</th>
+            <th md-column ng-if="!display.id">Status</th>
+            <th md-column ng-if="!display.id"></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-if="visitors.length==0">
+            <td md-cell style="text-align:center;" colspan="6">No Visitors Data</td>
+          </tr>
+          <tr md-row ng-repeat="v in visitors">
+            <td md-cell ng-if="!display.id">{{ v.slated | date:'dd/MM' }} ~ {{ v.due | date:'dd/MM' }}</td>
+            <td md-cell><a ui-sref="visitors.view({ id:v._id })">{{v.name}}</a></td>
+            <td md-cell>{{ v.institution }}</td>
+            <td md-cell ng-if="!display.id"><employee id="v.sponsor"></employee></td>
+            <td md-cell ng-if="!display.id" ng-switch="v.status">
+              <span ng-switch-when="a">Approved</span>
+              <span ng-switch-when="p">Pending</span>
+              <span ng-switch-when="r">Rejected</span>
+              <span ng-switch-when="c">Cancelled</span>
+            </td>
+            <td md-cell ng-if="!display.id">
+              <md-button class="md-icon-button"  ng-disabled="!display.id&&v.status==='a'" ui-sref="visitors.update({ id: v._id })">
+                <md-icon md-svg-icon="pencil"></md-icon>
+                <md-tooltip>Edit</md-tooltip>
+              </md-button>
+              <md-button class="md-icon-button" ng-disabled="!display.id&&v.status==='a'" ng-click="delete(v)">
+                <md-icon md-svg-icon="delete"></md-icon>
+                <md-tooltip>Delete</md-tooltip>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="filter.limit" md-limit-options="[20, 50, 100]" md-page="filter.page" md-total="{{visitorsCount}}" md-page-select></md-table-pagination>
+  </md-card>
+
+  <div flex=50 ng-if="display.id" ng-include="'/client/modules/visitors/views/_details.partial.html'">
+  </div>
+
+</section>

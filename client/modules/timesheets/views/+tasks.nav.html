@@ -1,0 +1,22 @@
+<div layout-padding>
+  <md-button class="md-icon-button" ng-class="display.sideTasks === 'i' ? 'md-primary' : ''" ng-click="display.sideTasks = 'i'">
+    <md-icon md-svg-icon="inbox"></md-icon>
+    <md-tooltip>Idle</md-tooltip>
+  </md-button>
+  <md-button class="md-icon-button" ng-class="display.sideTasks === 'f' ? 'md-primary' : ''" ng-click="display.sideTasks = 'f'">
+    <md-icon md-svg-icon="checkbox-multiple-marked-circle"></md-icon>
+    <md-tooltip>Closed</md-tooltip>
+  </md-button>
+  <md-button class="md-icon-button" ng-class="display.sideTasks === 'x' ? 'md-primary' : ''" ng-click="display.sideTasks = 'x'">
+    <md-icon md-svg-icon="delete"></md-icon>
+    <md-tooltip>Archived</md-tooltip>
+  </md-button>
+</div>
+
+<md-toolbar>
+  <h1 class="md-toolbar-tools">{{ display.sideTasks }} Tasks  </h1>
+</md-toolbar>
+
+<md-content layout-padding>
+  ini isinya konten doang kok yah
+</md-content>

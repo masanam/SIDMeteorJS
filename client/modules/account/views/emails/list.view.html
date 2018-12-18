@@ -1,0 +1,35 @@
+<section layout-align="center center" layout="row">
+  <md-card flex-gt-md=80 flex>
+    <md-card-content>
+    This is all email that is registered under your account. You can use any of these emails for logging in.
+    </md-card-content>
+
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Email</th>
+            <th md-column>Verified?</th>
+            <th md-column></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="email in currentUser.emails">
+            <td md-cell>{{email.address}}</td>
+            <td md-cell>{{email.verified ? 'Yes' : 'No' }}</td>
+            <td md-cell>
+              <md-button class="md-icon-button" ng-if="currentUser.emails.length > 1">
+                <md-icon md-svg-icon="close" ng-click="delete(email.address)"></md-icon>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+
+    <md-button ng-click="addEmail($event)">
+      <md-icon md-svg-icon="plus"></md-icon>
+      New Email
+    </md-button>
+  </md-card>
+</section>

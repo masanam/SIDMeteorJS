@@ -1,0 +1,29 @@
+<div ng-if="approval.approval === 'p'" layout="row" layour-align="center center">
+  <div layout="row" layout-align="start center" layout-padding flex> You Have Pending approval</div>
+  
+  <md-button ng-click="respond(approval, 'a')" class="md-primary">
+    <md-icon md-svg-icon="thumb-up"></md-icon> Approve
+  </md-button>
+  <md-button ng-click="respond(approval, 'r')" class="md-warn">
+    <md-icon md-svg-icon="thumb-down"></md-icon> Reject
+  </md-button>
+</div>
+
+<div ng-if="approval.approval === 'a' || owner === $root.currentEmployee._id" layout="row" layour-align="center center">
+  <div ng-if="owner === $root.currentEmployee._id" layout="row" layout-align="start center" layout-padding flex> This is your record</div>
+  <div ng-if="approval.approval === 'a'" layout="row" layout-align="start center" layout-padding flex> You have approved this record</div>
+  
+  <md-button ng-click="request(model, ref)" class="md-accent">
+    <md-icon md-svg-icon="chevron-double-up"></md-icon> Request for Approval
+  </md-button>
+  <md-button ng-click="respond(approval, 'r')" ng-if="approval.approval === 'a'" class="md-warn">
+    <md-icon md-svg-icon="thumb-down"></md-icon> Retract Approval
+  </md-button>
+</div>
+
+<div ng-if="approval.approval === 'r'" layout="row" layour-align="center center">
+  <div layout="row" layout-align="start center" layout-padding flex> You rejected this record</div>
+  <md-button ng-click="respond(approval, 'a')" class="md-primary">
+    <md-icon md-svg-icon="thumb-up"></md-icon> Reapprove
+  </md-button>
+</div>

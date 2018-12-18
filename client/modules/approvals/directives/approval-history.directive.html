@@ -1,0 +1,50 @@
+<md-card>
+  <div layout="row" layout-padding>
+    <span flex>Approval Status</span>
+    <md-button class="md-icon-button" ng-class="display.auto ? 'md-primary' : ''" ng-click="display.auto = !display.auto">
+      <md-icon md-svg-icon="eye"></md-icon>
+      <md-tooltip>Show Auto Approval</md-tooltip>
+    </md-button>
+    <md-button class="md-icon-button" ng-class="display.history ? 'md-primary' : ''" ng-click="display.history = !display.history">
+      <md-icon md-svg-icon="history"></md-icon>
+      <md-tooltip>Show History</md-tooltip>
+    </md-button>
+  </div>
+  <md-divider></md-divider>
+
+  <div ng-repeat="a in approvals | filter:{approval}" ng-if="!display.history">
+    <div layout="row" layout-padding>
+      <span ng-switch="a.approval" flex>
+        <employee id="a.approver"></employee>
+        <span ng-switch-when="a">Approved</span>
+        <span ng-switch-when="r">Declined</span>
+        <span ng-switch-when="y">Auto-Appr</span>
+        <span ng-switch-when="n">Auto-Dcln</span>
+        <span ng-switch-default>Pending</span>
+      </span>
+      <span>{{ a.approved | date:'dd MMM yy H:m' }}</span>
+    </div>
+    <md-divider></md-divider>
+  </div>
+
+  <div ng-if="!approvals" class="text-muted" layout-padding>
+    - No Approval Recorded -
+  </div>
+
+  <md-content md-theme="dark" ng-if="display.history">
+    <div ng-repeat="a in approvalHistories">
+      <div layout="row" layout-padding>
+        <span ng-switch="a.approval" flex>
+          <employee id="a.approver"></employee>
+          <span ng-switch-when="a">Approved</span>
+          <span ng-switch-when="r">Declined</span>
+          <span ng-switch-when="y">Auto-Appr</span>
+          <span ng-switch-when="n">Auto-Dcln</span>
+          <span ng-switch-default>Pending</span>
+        </span>
+        <span>{{ a.approved | date:'dd MMM yy H:m' }}</span>
+      </div>
+      <md-divider></md-divider>
+    </div>
+  </md-content>
+</md-card>

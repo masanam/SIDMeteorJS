@@ -1,0 +1,129 @@
+<md-card flex>
+  <md-card-title layout="row">
+    <md-card-title-text flex=50>
+      <span class="md-headline"><employee-data field="name" id="display.employee"></employee-data></span>
+    </md-card-title-text>
+    <span flex></span>
+      <md-button class="md-icon-button" ui-sref="violations.list">
+        <md-icon md-svg-icon="close"></md-icon>
+        <md-tooltip>Back</md-tooltip>
+      </md-button>
+    </md-card-actions>
+  </md-card-title>
+</md-card>
+
+<div layout="row">
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column width="30%">Details</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row>
+            <td md-cell>Violation No</td>
+            <td md-cell>{{ violation.violationNo }}</td>
+          </tr>
+          <tr md-row>
+            <td md-cell>Name</td>
+            <td md-cell><employee-data field="name" id="display.employee"></employee-data></td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Team</td>
+            <td md-cell><team id="violation.team"></team></td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Reporter</td>
+            <td md-cell><users id="violation.creator"></users></td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Case</td>
+            <td md-cell>{{ violation.case }}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Remark</td>
+            <td md-cell>{{ violation.remark }}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Phone</td>
+            <td md-cell><employee-data fielduser="profile" fielduserobj="phone" id="display.employee"></employee-data></td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Email</td>
+            <td md-cell>{{employee.email}}
+              <md-button ng-if="!display.email" class="md-icon-button" ng-click="display.email=!display.email">
+                <md-icon md-svg-icon="send"></md-icon>
+                <md-tooltip>Email {{employee.name}}</md-tooltip>
+              </md-button>
+            </td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Status</td>
+            <td md-cell>{{ employee.status === 'a' ? 'Active' : employee.status === 's' ? 'Suspended' : '-' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+
+  <div flex=50>
+    <md-card>
+      <div layout-padding>Approval Status</div>
+      <md-divider></md-divider>
+
+      <div>
+        <div layout-padding>
+          <employee id="a.approver"></employee>
+          {{ violation.status == 'a' ? 'Approved' : a.status == 'r' ? 'Rejected' : 'Pending' }}
+        </div>
+        <md-divider></md-divider>
+      </div>
+
+      <div ng-if="!employee.approvals" class="text-muted" layout-padding>
+        - No Approval Scheme -
+      </div>
+    </md-card>
+
+    <md-card ng-if="display.email">
+      <div layout-padding>Email {{employee.name}}</div>
+
+      <md-divider></md-divider>
+
+
+      <md-card-content>
+        <md-input-container class="md-block">
+          <label>Subject</label>
+          <input ng-model="violation.emailSubject">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Message</label>
+          <textarea ng-model="violation.emailMessage" md-maxlength="100" rows="2" md-select-on-focus></textarea>
+        </md-input-container>
+      </md-card-content>
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Send</md-button>
+        <md-button ng-click="resetForm()">Reset Form</md-button>
+        <md-button ng-click="display.email=!display.email">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+
+    <rfid employee="employee._id"></rfid>
+
+
+  </div>
+
+</div>

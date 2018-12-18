@@ -1,0 +1,177 @@
+<md-toolbar class="md-hue-2">
+  <div class="md-toolbar-tools" layout="row">
+    <span flex=15>
+      <h2 md-truncate style="padding-right:30px">{{ page.title }}</h2>
+    </span>
+
+    <span flex>
+      <span >
+        <md-menu>
+          <md-button class="dropdown md-icon-button" ng-click="$mdMenu.open()">
+            <md-icon md-svg-icon="settings"></md-icon>
+            <md-tooltip>Admin Settings</md-tooltip>
+          </md-button>
+
+          <md-menu-content>
+            <md-menu-item>
+              <md-button ui-sref="teams.list">
+                <md-icon md-svg-icon="domain"></md-icon>
+                Manage Teams
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ui-sref="users.list">
+                <md-icon md-svg-icon="account"></md-icon>
+                Manage Users
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+        
+      </span>
+
+      <span ng-if="currentUser">
+        <md-button class="md-icon-button" ng-if="currentTeam.subscriptions.pm" ui-sref="timesheets.list">
+          <md-icon md-svg-icon="history"></md-icon>
+          <md-tooltip>Timesheet</md-tooltip>
+        </md-button>
+
+        <md-button class="md-icon-button" ng-if="currentTeam.subscriptions.asset && currentTeam.subscriptions.audit" ui-sref="commisionings.all">
+          <md-icon md-svg-icon="content-paste"></md-icon>
+          <md-tooltip>Commisionings</md-tooltip>
+        </md-button>
+
+        <md-button class="md-icon-button" ng-if="currentTeam.subscriptions.audit" ui-sref="audits.list">
+          <md-icon md-svg-icon="file-multiple"></md-icon>
+          <md-tooltip>Audit</md-tooltip>
+        </md-button>
+
+        <md-button class="md-icon-button" ng-if="currentTeam.subscriptions.audit" ui-sref="hazards.list">
+          <md-icon md-svg-icon="clipboard-alert"></md-icon>
+          <md-tooltip>Hazard</md-tooltip>
+        </md-button>
+
+        <md-button class="md-icon-button" ng-if="currentTeam.subscriptions.audit" ui-sref="violations.list">
+          <md-icon md-svg-icon="account-alert"></md-icon>
+          <md-tooltip>Violation</md-tooltip>
+        </md-button>
+
+        <md-button class="md-icon-button" ng-if="currentTeam.subscriptions.audit" ui-sref="investigations.list">
+          <md-icon md-svg-icon="orbit"></md-icon>
+          <md-tooltip>Incident Investigations</md-tooltip>
+        </md-button>
+      </span>
+    </span>
+
+    <span>
+      <span ng-if="currentUser">
+      <md-button class="md-icon-button" ui-sref="attendances.list">
+        <md-icon md-svg-icon="animation"></md-icon>
+        <md-tooltip>Attendance</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-if="currentTeam.subscriptions.audit" ui-sref="licenses.list">
+        <md-icon md-svg-icon="book"></md-icon>
+        <md-tooltip>License & Permit</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-if="currentTeam.subscriptions.visitor" ui-sref="visitors.list">
+        <md-icon md-svg-icon="account-switch"></md-icon>
+        <md-tooltip>Visitor</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-if="currentTeam.subscriptions.rfid" ui-sref="rfid.list">
+        <md-icon md-svg-icon="credit-card-multiple"></md-icon>
+        <md-tooltip>RFID Cards</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ui-sref="employees.list">
+        <md-icon md-svg-icon="account-box"></md-icon>
+        <md-tooltip>Employee</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ui-sref="vendors.list">
+        <md-icon md-svg-icon="home-assistant"></md-icon>
+        <md-tooltip>Vendors</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-if="currentTeam.subscriptions.asset" ui-sref="assets.list">
+        <md-icon md-svg-icon="treasure-chest"></md-icon>
+        <md-tooltip>Assets</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ui-sref="invitation.list">
+        <md-icon md-svg-icon="contact-mail"></md-icon>
+        <md-tooltip>Invitation</md-tooltip>
+      </md-button>
+    </span>
+  </span>
+
+    <span ng-if="currentUser" ng-controller="AuthController">
+      <md-menu>
+        <md-button class="dropdown user user-menu" ng-click="$mdMenu.open()">
+          <img ng-src="{{ currentUser.profile.image }}" ng-src-fallback="/image/default.png" class="header-profile-image">
+          <span hide-xs>{{ currentUser.username }}</span>
+        </md-button>
+
+        <md-menu-content>
+          <md-menu-item>
+            <md-button class="dropdown user user-menu" ng-click="$mdMenu.close()">
+              <img ng-src="{{ currentUser.profile.image }}" ng-src-fallback="/image/default.png" class="header-profile-image">
+              {{ currentUser.username }}
+            </md-button>
+          </md-menu-item>
+
+          <md-divider></md-divider>
+
+
+
+          <span ng-controller="AccountTeamsController">
+            <md-menu-item ng-if="employments[0]"ng-repeat="e in employments">
+              <md-button ng-click="changeTeam(e.team)" ng-class="e.team == currentUser.currentTeam ?  'md-primary' : ''">
+                <current-team id="e.team"></current-team>
+              </md-button>
+            </md-menu-item>
+
+            <md-menu-item ng-if="employments[0]">
+              <md-button ui-sref="account.teams">
+                <md-icon md-svg-icon="domain"></md-icon>
+                Edit Teams
+              </md-button>
+            </md-menu-item>
+
+            <md-menu-item ng-if="!employments[0]">
+              <md-button ui-sref="account.team-create">
+                <md-icon md-svg-icon="plus"></md-icon>
+                Create Teams
+              </md-button>
+            </md-menu-item>
+
+            <md-menu-item ng-if="!employments[0]">
+              <md-button ui-sref="account.team-add">
+                <md-icon md-svg-icon="domain"></md-icon>
+                Select Teams
+              </md-button>
+            </md-menu-item>
+          </span>
+          
+          <md-divider></md-divider>
+
+          <md-menu-item>
+            <md-button ui-sref="account.view">
+              <md-icon md-svg-icon="account-edit"></md-icon>
+              Edit Profile
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="signout()">
+              <md-icon md-svg-icon="logout-variant"></md-icon>
+              SIGN OUT
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+  </span>
+    </span>
+
+    <span ng-if="!currentUser">
+      <md-button class="md-icon-button" ui-sref="auth.signin">
+        <md-icon md-svg-icon="login-variant"></md-icon>
+        <md-tooltip>SIGN IN</md-tooltip>
+      </md-button>
+    </span>
+  </div>
+</md-toolbar>

@@ -1,0 +1,36 @@
+<section layout-align="center" ng-controller="AccountRolesController" layout="row" flex>
+
+  <form ng-init="findOne()" ng-submit="update(team)" flex=80>
+    <md-card flex>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Roles & Privileges</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Privileges">
+          <div ng-include="'/client/modules/account/views/teams/roles/_form-privileges.partial.html'" layout-padding></div>
+        </md-tab>
+        <md-tab label="Departments">
+          <div ng-include="'/client/modules/account/views/teams/roles/_form-departments.partial.html'" layout-padding></div>
+        </md-tab>
+        <md-tab label="Job Titles">
+          <div ng-include="'/client/modules/account/views/teams/roles/_form-jobtitles.partial.html'" layout-padding></div>
+        </md-tab>
+        <md-tab label="Grades">
+          <div ng-include="'/client/modules/account/views/teams/roles/_form-grades.partial.html'" layout-padding></div>
+        </md-tab>
+      </md-tabs>
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Update All</md-button>
+        <md-button ui-sref="account.teams">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

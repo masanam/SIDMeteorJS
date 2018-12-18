@@ -1,0 +1,50 @@
+<div layout-padding>
+  <div style="background:rgba(255,255,255,0.5); border:solid 1px rgba(0,0,0,0.1); border-radius:5px; margin-top:5px">
+    <div class="md-headline">
+      ICE (In Case of Emergency)
+    </div>
+    <md-button ng-click="!employee.ice ? employee.ice = [{}] : employee.ice.push({});">Add New Contact</md-button>
+
+    <div ng-repeat="ice in employee.ice track by $index">
+      <div layout="row" style="padding:10px">
+        <md-input-container class="md-block" flex>
+          <label>Name</label>
+          <input ng-model="ice.name">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Relationship w/ Employee</label>
+          <input ng-model="ice.relationship">
+        </md-input-container>
+
+        <md-button class="md-icon-button md-warn" ng-click="employee.ice.splice($index)" style="margin-top:20px">
+          <md-icon md-svg-icon="close"></md-icon>
+        </md-button>
+      </div>
+
+      <div layout="row" style="padding:10px">
+        <md-input-container class="md-block">
+          <label>Phone</label>
+          <input ng-model="ice.phone">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Email</label>
+          <input ng-model="ice.email">
+        </md-input-container>
+
+        <md-input-container class="md-block" flex>
+          <label>Address</label>
+          <input ng-model="ice.address">
+        </md-input-container>
+      </div>
+
+      <md-divider ng-if="employee.ice.length !== $index+1"></md-divider>
+    </div>
+  </div>
+
+</div>
+
+<div ng-if="display.error" class="error-notice">
+  {{ display.error }}
+</div>

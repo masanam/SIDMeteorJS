@@ -1,0 +1,26 @@
+<form ng-submit="signin(auth.email, auth.password)" name="sign_in" role="form" layout="column" style="color:grey;" layout-padding novalidate>
+  <md-input-container class="md-icon-float md-block">
+    <label>Email</label>
+    <md-icon md-svg-icon="contact-mail"></md-icon>
+    <input ng-model="auth.email" type="email" required>
+  </md-input-container>
+
+  <md-input-container class="md-icon-float md-block">
+    <label>Password</label>
+    <md-icon md-svg-icon="key"></md-icon>
+    <input ng-model="auth.password" type="password" required>
+  </md-input-container>
+
+
+  <div layout-align="center" layout="row">
+    <a ui-sref="auth.forgot">Forgot your password?</a>
+  </div>
+
+  <div layout-align="center" layout="row">
+    <md-button type="submit" class="md-raised md-primary">Sign In</md-button>
+    <md-button ui-sref="auth.signup">Sign Up</md-button>
+  </div>
+
+  <div ng-if="display.error" class="error-notice">{{ display.error }}</div>
+
+</form>

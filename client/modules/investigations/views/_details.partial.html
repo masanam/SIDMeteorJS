@@ -1,0 +1,96 @@
+<md-card flex>
+  <md-card-title layout="row">
+    <md-card-title-text flex=25>
+      <span class="md-title">Reporter : <strong>{{ investigation.nickname }}</strong></span>
+    </md-card-title-text>
+    <span flex></span>
+    <md-card-actions layout="row" layout-align="end center" flex=30 style="margin-top:-5px;">
+      <md-button class="md-icon-button" ui-sref="investigations.update({ id: investigation._id })">
+        <md-icon md-svg-icon="pencil"></md-icon>
+        <md-tooltip>Edit</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="delete(investigation)">
+        <md-icon md-svg-icon="delete"></md-icon>
+        <md-tooltip>Delete</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ui-sref="investigations.list">
+        <md-icon md-svg-icon="close"></md-icon>
+        <md-tooltip>Back</md-tooltip>
+      </md-button>
+    </md-card-actions>
+  </md-card-title>
+
+  <md-divider></md-divider>
+
+</md-card>
+
+<div layout="row">
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column width="30%">Incident Details</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row>
+            <td md-cell>Reported Date</td>
+            <td md-cell>{{investigation.created | date}} at {{ investigation.created | date : "HH:mm" }}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Incident Date</td>
+            <td md-cell>{{investigation.slated | date}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Reporter Full Name</td>
+            <td md-cell>{{investigation.name}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Reporter Job Position</td>
+            <td md-cell>{{investigation.position}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Department In Charge</td>
+            <td md-cell>{{investigation.deptInCharge}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Phone Number</td>
+            <td md-cell>{{investigation.phone}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Location</td>
+            <td md-cell>{{investigation.location}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Total Victim(s)</td>
+            <td md-cell>{{investigation.victim}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Chronology</td>
+            <td md-cell>{{investigation.chronology}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Incident Effect</td>
+            <td md-cell>{{investigation.effect}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Action Plan</td>
+            <td md-cell>{{investigation.action}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+</div>

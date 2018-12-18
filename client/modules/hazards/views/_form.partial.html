@@ -1,0 +1,28 @@
+  <md-content layout-padding>
+
+    <div layout="row">
+      <md-input-container class="md-block">
+        <div flex-gt-xs>
+          <md-datepicker ng-model="hazard.date" md-placeholder="Enter Date" required></md-datepicker>
+        </div>
+      </md-input-container>
+    </div>
+
+    <md-input-container class="md-block">
+      <label>Danger Type</label>
+      <md-select name="singleSelect" ng-model="hazard.type" required>
+        <md-option value="f">Field Danger</md-option>
+        <md-option value="g">Golden Rules Violation</md-option>
+      </md-select>
+    </md-input-container>
+
+    <div ng-if="hazard.type == 'f'">
+      <div ng-include="'client/modules/hazards/views/_form.field.partial.html'">
+      </div>
+    </div>
+
+    <div ng-if="hazard.type == 'g'">
+      <div ng-include="'client/modules/hazards/views/_form.gorules.partial.html'">
+    </div>
+
+  </md-content>

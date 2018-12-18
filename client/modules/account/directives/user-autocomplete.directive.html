@@ -1,0 +1,19 @@
+
+  <md-autocomplete
+    ng-required="required"
+    md-search-text="q"
+    md-items="item in users"
+    md-selected-item="selected"
+    md-item-text="item.profile.name"
+    md-selected-item-change="model = selected._id; obj = selected;"
+    md-min-length="1"
+    placeholder="{{label}}">
+
+    <md-item-template>
+      <span md-highlight-text="q" md-highlight-flags="^i">{{item.username}} - {{ item.profile.name }}</span>
+    </md-item-template>
+
+    <md-not-found>
+      No employees matching "{{q}}" were found.
+    </md-not-found>
+  </md-autocomplete>

@@ -1,0 +1,32 @@
+<div layout="row">
+  <md-button aria-label="home" class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="visitors.list">Visitors</md-button>
+
+  <span ng-if="visitor._id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>{{ visitor.name }}</md-button>
+  </span>
+
+  <span ng-if="!visitor._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="visitors.create">Create</md-button>
+  </span>
+
+  <span ng-if="no">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>Details</md-button>
+  </span>
+
+
+  <span flex></span>
+  <md-button ui-sref="visitors.create">
+    <md-icon md-svg-icon="plus"></md-icon>
+    Register
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<md-content layout="row" flex ui-view>
+</md-content>

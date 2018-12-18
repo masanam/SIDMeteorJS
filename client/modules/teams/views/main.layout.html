@@ -1,0 +1,29 @@
+<div layout="row">
+  <md-button aria-label="home" class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="teams.list">teams</md-button>
+
+  <span ng-if="teams._id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="teams.update({ id: id })">{{ teams.name }}</md-button>
+  </span>
+
+  <span ng-if="!teams._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="teams.create">Create</md-button>
+  </span>
+
+
+  <span flex></span>
+  <md-button ui-sref="teams.create">
+    <md-icon md-svg-icon="plus"></md-icon>
+    Add New
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<md-content flex>
+
+  <ui-view></ui-view>
+</md-content>

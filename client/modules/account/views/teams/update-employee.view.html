@@ -1,0 +1,24 @@
+<section layout-align="center center" ng-controller="EmployeesController" layout="row" layout-padding>
+  <form ng-init="findOne()" ng-submit="update(employees)" flex=60>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Update Your Data</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-content>
+        <div ng-include="'/client/modules/employees/views/personal/update.view.html'"></div>
+      </md-content>
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Update</md-button>
+        <md-button ui-sref="account.teams">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

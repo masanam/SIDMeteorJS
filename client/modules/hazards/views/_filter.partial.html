@@ -1,0 +1,68 @@
+<md-card class="md-no-whitespace">
+    <div layout="row" layout-padding>
+      <div flex>Filters</div>
+
+      <md-menu class=" md-condensed">
+        <md-button class="md-icon-button md-condensed" ng-click="$mdMenu.open()">
+          <md-icon md-svg-icon="dots-vertical"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="resetFilter()">
+              <md-icon md-svg-icon="restart"></md-icon>
+              Reset Filter
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="downloadXLS()">
+              <md-icon md-svg-icon="file-excel"></md-icon>
+              Download as XLS
+            </md-button>
+          </md-menu-item>
+          <md-divider></md-divider>
+        </md-menu-content>
+      </md-menu>
+    </div>
+
+    <md-divider></md-divider>
+
+    <md-content layout-padding flex>
+
+    <div>
+      <md-switch ng-model="filter.type" aria-label="filter-danger-violation">
+        <span ng-if="!filter.type">Danger</span>
+        <span ng-if="filter.type">Violation</span>
+      </md-switch>
+
+      <md-datepicker ng-model="filter.date" style="margin-left:-10px" placeholder="Date"></md-datepicker>
+
+      <md-input-container ng-if="filter.type" class="md-block" flex>
+        <label>Search By Violator</label>
+        <input ng-model="filter.violator">
+      </md-input-container>
+
+      <div ng-switch="filter.type">
+        <div ng-switch-when="false">
+          <md-input-container class="md-block" flex>
+            <label>Search By Danger</label>
+            <input ng-model="filter.danger">
+          </md-input-container>
+        </div>
+        
+        <div ng-switch-when="true">
+          <md-input-container class="md-block" flex>
+            <label>Search By Violation</label>
+            <input ng-model="filter.violation">
+          </md-input-container>
+        </div>
+      </div>
+
+      <md-select ng-model="filter.status" placeholder="Search By Status">
+        <md-option value="">- Search By Status -</md-option>
+        <md-option value="a">Approved</md-option>
+        <md-option value="n">Not Approved</md-option>
+      </md-select>
+
+    </div>
+    </md-content>
+</md-card>

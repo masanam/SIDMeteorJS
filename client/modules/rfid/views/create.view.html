@@ -1,0 +1,50 @@
+<section layout-align="center center" layout="row" layout-padding>
+  <form ng-init="resetForm()" ng-submit="create(rfid)" flex=60>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Create New rfid</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+            <label>Card Number</label>
+            <input ng-model="rfid.rfid">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Due date</label>
+            <md-datepicker ng-model="rfid.due"></md-datepicker>
+          </md-input-container>
+        </div>
+
+        <div layout="row" layout-align="center center">
+          <div style="margin-right:10px">
+            <md-radio-group ng-model="holder">
+              <md-radio-button value="employee" class="md-primary">Employee</md-radio-button>
+              <md-radio-button value="visitor">Visitor</md-radio-button>
+            </md-radio-group>
+          </div>
+
+          <div layout-padding flex>
+            <employee-autocomplete model="rfid.employee" label="'Employee'" ng-if="holder === 'employee'" required="false"></employee-autocomplete>
+
+            <visitor-autocomplete model="rfid.visitor" label="'Visitor'" ng-if="holder === 'visitor'" required="false"></visitor-autocomplete>
+          </div>
+        </div>
+      </md-card-content>
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Create</md-button>
+        <md-button ng-click="resetForm()">Reset Form</md-button>
+        <md-button ui-sref="rfid.list">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

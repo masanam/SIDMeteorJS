@@ -1,0 +1,16 @@
+<div style="margin-top:5px">
+  <array-input list="employee.addresses" label="'Address'"></array-input>
+</div>
+
+<div style="margin-top:5px">
+  <array-input list="employee.phones" label="'Phone'"></array-input>
+</div>
+
+<div>
+  <array-input list="employee.emails" label="'Email'"></array-input>
+</div>
+
+
+<div ng-if="display.error" class="error-notice">
+  {{ display.error }}
+</div>

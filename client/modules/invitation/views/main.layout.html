@@ -1,0 +1,28 @@
+<div layout="row">
+  <md-button class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="invitation.list">invitation</md-button>
+
+  <span ng-if="!invitations._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="invitation.create">Create</md-button>
+  </span>
+
+
+  <span flex></span>
+  <md-button ui-sref="invitation.create" ng-click="display.error=undefined">
+    <md-icon md-svg-icon="plus"></md-icon>
+    Add New
+  </md-button>
+
+  <md-button ui-sref="invitation.create-bulk" ng-click="display.error=undefined">
+    <md-icon md-svg-icon="plus-circle-multiple-outline"></md-icon>
+    Add Bulk
+  </md-button>
+
+</div>
+
+<md-divider></md-divider>
+
+<md-content ui-view layout="column" flex>
+</md-content>

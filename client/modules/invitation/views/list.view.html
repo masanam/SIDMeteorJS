@@ -1,0 +1,59 @@
+<section ng-init="find(); findOne()" layout="row" flex>
+  <div flex=15 ng-include="'/client/modules/invitation/views/_filter.partial.html'">
+  </div>
+
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Email</th>
+            <th md-column>Invited By</th>
+            <th md-column>Team</th>
+            <th md-column>Date Invited</th>
+            <th md-column>Status</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="i in invitations">
+            <td md-cell>{{i.email}}</td>
+            <td md-cell><users id="i.creator"></users></td>
+            <td md-cell><team id="i.team"></team></td>
+            <td md-cell>{{i.invitation_time | date:'yyyy-MM-dd' }}</td>
+            <td md-cell ng-switch="i.status">
+              <span ng-switch-when="s">Sent</span>
+              <span ng-switch-when="f">Failed</span>
+              <span ng-switch-when="u">Uninvited</span>
+              <span ng-switch-when="p">Pending</span>
+            </td>
+            <td md-cell ng-switch="i.status">
+              <span ng-switch-when="s">
+                <md-button class="md-icon-button" ng-click="uninvited(i)">
+                  <md-icon md-svg-icon="undo-variant"></md-icon>
+                  <md-tooltip>Cancel Invitation</md-tooltip>
+                </md-button>
+              </span>
+              <span ng-switch-when="f">
+                <md-button class="md-icon-button" ng-click="resend(i)">
+                  <md-icon md-svg-icon="reload"></md-icon>
+                  <md-tooltip>Resend</md-tooltip>
+                </md-button>
+              </span>
+              <span ng-switch-when="u">
+                <md-button class="md-icon-button" ng-click="resend(i)">
+                  <md-icon md-svg-icon="send"></md-icon>
+                  <md-tooltip>Reinvite</md-tooltip>
+                </md-button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+    <md-table-pagination md-limit="filter.limit" md-limit-options="[20, 50, 100]" md-page="filter.page" md-total="{{assetsCount}}" md-page-select></md-table-pagination>
+  </md-card>
+
+  <div flex=50 ng-if="display.id" ng-include="'/client/modules/assets/views/_details.partial.html'">
+  </div>
+
+</section>

@@ -1,0 +1,23 @@
+<section layout-align="center center" layout="row">
+  <form ng-init="resetForm()" ng-submit="create(teams)" flex=80>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Create New teams</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <div ng-include="'/client/modules/teams/views/_form.partial.html'"></div>
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Create</md-button>
+        <md-button ng-click="resetForm()">Reset Form</md-button>
+        <md-button ui-sref="teams.list">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

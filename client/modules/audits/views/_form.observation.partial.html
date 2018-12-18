@@ -1,0 +1,93 @@
+<div layout="row">
+  <md-input-container class="md-block" flex style="margin-left:-10px">
+    <label>Date</label>
+    <div flex-gt-xs>
+      <md-datepicker ng-model="audit.slated" md-placeholder="Enter Date" name="date" required></md-datepicker>
+    </div>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex style="margin-left:-10px">
+    <label>Due Date</label>
+    <div flex-gt-xs>
+      <md-datepicker ng-model="audit.due" md-placeholder="Due Date" name="date" required></md-datepicker>
+    </div>
+  </md-input-container>
+</div>
+
+<div layout="row">
+  <md-input-container flex="50">
+      <label>Observer</label>
+    <input ng-model="audit.observer" required>
+  </md-input-container>
+
+  <md-input-container flex="50">
+      <label>Department in Charge (DIC)</label>
+    <input ng-model="audit.deptInCharge" required>
+  </md-input-container>
+</div>
+
+<div layout="row">
+  <md-input-container flex="50">
+      <label>Observed</label>
+    <input ng-model="audit.observed" required>
+  </md-input-container>
+
+  <md-input-container flex="50">
+    <label>Location</label>
+    <md-select ng-model="audit.location" name="loc" >
+      <md-option ng-repeat="loc in select.auditLocation" value="{{ loc }}" required>{{ loc }}</md-option>
+    </md-select>
+  </md-input-container>
+</div>
+
+<div>
+  <md-input-container class="md-block" style="margin-top: -20px;">
+    <label>Findings</label><br/><br/>
+    <md-checkbox ng-repeat="finding in select.auditFindings" ng-model="audit.findings[$index]" ng-true-value="'{{finding}}'" ng-false-value="''" required>
+      {{finding}}
+    </md-checkbox>
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <label>Findings Description</label>
+    <input ng-model="audit.desc" required>
+  </md-input-container>
+
+  <md-input-container class="md-block" style="margin-top: -20px;">
+    <label>Findings Category</label>
+    <md-select ng-model="audit.category" name="cate" >
+      <md-option ng-repeat="cate in select.auditCategory" value="{{ cate }}" required>{{ cate }}</md-option>
+    </md-select>
+  </md-input-container>
+
+    <md-input-container class="md-block" >
+        <label>Action Plan</label>
+      <textarea ng-model="audit.action" md-maxlength="300" rows="2" md-select-on-focus required></textarea>
+    </md-input-container>
+
+    <md-input-container class="md-block" style="margin-top: -20px;">
+      <label>Status</label>
+      <md-select name="singleSelect" ng-model="audit.status" required>
+        <md-option value="c">Clear</md-option>
+        <md-option value="n">Not Clear</md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-card-action>
+      <label>Photo</label><br>
+      <input class="ng-hide" id="input-file-id" type="file" ng-model="audit.photo"  />
+      <label for="input-file-id" class="md-button md-raised md-primary">Upload</label>
+    </md-card-action>
+
+    <md-input-container style="margin-top: 50px;" class="md-block" ng-if="display.id">
+        <label>Who able to <strong>view</strong> this information?</label>
+        <employee-autocomplete-chips style="margin-top: 20px;" label="'Add Viewer'" model="audit.viewers" ng-if="display.id">
+        </employee-autocomplete-chips>
+    </md-input-container>
+
+    <md-input-container class="md-block" ng-if="display.id">
+        <label>Who able to <strong>edit</strong> this information?</label>
+        <employee-autocomplete-chips label="'Add Editor'" model="audit.editors" ng-if="display.id">
+        </employee-autocomplete-chips>
+    </md-input-container>
+</div>

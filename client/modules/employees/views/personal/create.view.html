@@ -1,0 +1,28 @@
+<section layout-align="center" ng-controller="EmployeeFormController" layout="row">
+  <form ng-init="resetForm()" ng-submit="create(employee)" flex=60>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Create New Employee</span>
+          <span class="md-subhead">Personal Data</span>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content ng-include="'/client/modules/employees/views/personal/_form.partial.html'">
+      </md-card-content>
+      
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <div layout="row">
+          <md-button ui-sref="employees.list">Cancel</md-button>
+          <md-button ng-click="resetForm()">Reset Form</md-button>
+          <span flex></span>
+          <md-button class="md-raised md-primary" type="submit">Next</md-button>
+        </div>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

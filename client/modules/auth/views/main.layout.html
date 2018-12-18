@@ -1,0 +1,22 @@
+<section layout="column" layout-align="center center">
+    <md-card>
+      <md-toolbar layout-align="center center">
+        <md-toolbar-tool>
+          <md-icon md-svg-icon="fingerprint"></md-icon>
+          Alteos SingleID
+        </md-toolbar-tool>
+      </md-toolbar>
+
+      <md-divider></md-divider>
+
+      <div class="callout callout-danger" ng-if="err">
+        {{ err.message }}
+      </div>
+
+      <div ng-include="'/client/modules/auth/views/social-login.view.html'"></div>
+
+      <md-divider></md-divider>
+
+      <ui-view></ui-view>
+    </md-card>
+</section>

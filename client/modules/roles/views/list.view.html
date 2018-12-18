@@ -1,0 +1,33 @@
+<section ng-init="find()">
+
+  <md-card>
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Name</th>
+            <th md-column>Company</th>
+            <th md-column>Status</th>
+
+            <th md-column></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="role in roless">
+            <td md-cell>{{role.name}}</td>
+            <td md-cell>{{role.org}}</td>
+            <td md-cell>{{role.status}}</td>
+            <td md-cell>
+              <md-button class="md-icon-button" ui-sref="roles.update({ id: role._id })">
+                <md-icon md-svg-icon="pencil"></md-icon>
+              </md-button>
+              <md-button class="md-icon-button" ng-click="delete(role)">
+                <md-icon md-svg-icon="delete"></md-icon>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+</section>

@@ -1,0 +1,26 @@
+<div layout="row">
+  <md-input-container class="md-block" flex>
+    <label>Card Number</label>
+    <input ng-model="rfid.rfid">
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <label>Due date</label>
+    <md-datepicker ng-model="rfid.due"></md-datepicker>
+  </md-input-container>
+</div>
+
+<div layout="row" layout-align="center center">
+  <div style="margin-right:10px">
+    <md-radio-group ng-model="holder">
+      <md-radio-button value="employee" class="md-primary">Employee</md-radio-button>
+      <md-radio-button value="visitor">Visitor</md-radio-button>
+    </md-radio-group>
+  </div>
+
+  <div layout-padding flex>
+    <employee-autocomplete model="rfid.employee" label="'Employee'" ng-if="holder === 'employee'" required="false"></employee-autocomplete>
+
+    <visitor-autocomplete model="rfid.visitor" label="'Visitor'" ng-if="holder === 'visitor'" required="false"></visitor-autocomplete>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<table md-table ng-init="displayDate();resetFilter()">
+  <thead md-head>
+    <tr md-row>
+      <th md-column>Name</th>
+      <th md-column ng-repeat="d in days" style="padding:7px">{{ d | date:'dd'}}</th>
+    </tr>
+  </thead>
+  <tbody md-body>
+
+    <tr md-row ng-if="employees.length==0">
+      <td md-cell style="text-align:center;" colspan="5">No Performance Data</td>
+    </tr>
+    <tr ng-repeat="e in employees | orderBy:'name'">
+      <td md-cell><a ui-sref="performance.view({ id: e._id })">{{ e.name }}</a></td>
+      <td md-cell ng-repeat="day in days" style="padding:5px">
+        <div ng-init="dat= day.getDate(); te= toDate(e.date);"></div>
+          <div ng-if="te.includes(dat) && notYetDate(day)" class="present" flex></div>
+          <div ng-if="!te.includes(dat) && notYetDate(day)" class="not-present"></div>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+<md-table-pagination md-limit="filter.limit" md-limit-options="[20, 50, 100]" md-page="filter.page" md-total="{{employeesCount}}" md-page-select></md-table-pagination>

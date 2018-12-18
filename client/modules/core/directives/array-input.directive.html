@@ -1,0 +1,19 @@
+<div style="background:rgba(255,255,255,0.5); border:solid 1px rgba(0,0,0,0.1); border-radius:5px;" layout-padding>
+  <div layout="row" layout-align="end">
+    <md-button ng-click="add()" class="md-primary">
+      Add new {{ label }}
+      <md-icon md-svg-icon="plus"></md-icon>
+    </md-button>
+  </div>
+
+  <div ng-repeat="v in list track by $index" layout="row">
+    <md-input-container flex>
+      <label>{{ label }}</label>
+      <input ng-model="list[$index]" ng-placeholder="label">
+    </md-input-container>
+
+    <md-button class="md-icon-button md-warn" ng-click="splice($index)" style="margin-top:20px">
+      <md-icon md-svg-icon="close"></md-icon>
+    </md-button>
+  </div>
+</div>

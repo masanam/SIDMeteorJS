@@ -1,0 +1,105 @@
+<md-card flex>
+  <md-card-title layout="row">
+    <md-card-title-text flex=50>
+      <span class="md-headline">{{ asset.name }}</span>
+    </md-card-title-text>
+    <span flex></span>
+    <md-card-actions layout="row" layout-align="end center" flex=30 style="margin-top:-5px;">
+      <md-button class="md-icon-button" ui-sref="assets.update({ id: asset._id })">
+        <md-icon md-svg-icon="pencil"></md-icon>
+        <md-tooltip>Edit</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="delete(asset)">
+        <md-icon md-svg-icon="delete"></md-icon>
+        <md-tooltip>Delete</md-tooltip>
+      </md-button>
+    </md-card-actions>
+      <md-button class="md-icon-button" ui-sref="assets.list">
+        <md-icon md-svg-icon="close"></md-icon>
+        <md-tooltip>Back</md-tooltip>
+      </md-button>
+    </md-card-actions>
+  </md-card-title>
+</md-card>
+
+<div layout="row">
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column width="30%">Details</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row>
+            <td md-cell>Name</td>
+            <td md-cell>{{ asset.name }} </td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Serial</td>
+            <td md-cell>{{asset.serial}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Location</td>
+            <td md-cell>{{asset.location}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Type</td>
+            <td md-cell>{{asset.type }}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Due Date</td>
+            <td md-cell>{{asset.duedate | date}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Age</td>
+            <td md-cell>{{asset.age}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Quantity</td>
+            <td md-cell>{{asset.qty}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Description</td>
+            <td md-cell>{{asset.desc}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Status</td>
+            <td md-cell>{{ asset.status === 'a' ? 'Active' : asset.status === 'n' ? 'Suspended' : '-' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+
+  <div flex=50>
+    <md-card>
+      <div layout-padding>Approval Status</div>
+      <md-divider></md-divider>
+
+      <div ng-repeat="a in assets.approvals">
+        <div layout-padding>
+          <asset id="a.approver" field="serial"></asset> - <asset id="a.approver" field="name"></asset>
+          {{ a.status == 'a' ? 'Approved' : a.status == 'r' ? 'Rejected' : 'Pending' }}
+        </div>
+        <md-divider></md-divider>
+      </div>
+
+      <div ng-if="!assets.approvals" class="text-muted" layout-padding>
+        - No Approval Scheme -
+      </div>
+    </md-card>
+
+    <rfid assets="assets._id"></rfid>
+  </div>
+</div>

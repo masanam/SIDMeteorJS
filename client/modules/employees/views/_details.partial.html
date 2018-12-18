@@ -1,0 +1,105 @@
+<md-card flex>
+  <md-card-title layout="row">
+    <md-card-title-text flex=50>
+      <span class="md-headline">{{ employee.name }}</span>
+    </md-card-title-text>
+    <span flex></span>
+    <md-card-actions layout="row" layout-align="end center" flex=30 style="margin-top:-5px;">
+      <md-button class="md-icon-button" ui-sref="employees.update-personal({ id: employee._id })">
+        <md-icon md-svg-icon="pencil"></md-icon>
+        <md-tooltip>Edit</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="delete(employee)">
+        <md-icon md-svg-icon="delete"></md-icon>
+        <md-tooltip>Delete</md-tooltip>
+      </md-button>
+    </md-card-actions>
+      <md-button class="md-icon-button" ui-sref="employees.list">
+        <md-icon md-svg-icon="close"></md-icon>
+        <md-tooltip>Back</md-tooltip>
+      </md-button>
+    </md-card-actions>
+  </md-card-title>
+</md-card>
+
+<div layout="row">
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column width="30%">Details</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row>
+            <td md-cell>Name</td>
+            <td md-cell>{{ employee.name }} </td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Team</td>
+            <td md-cell><team id="employee.team"></team></td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Address</td>
+            <td md-cell>{{employee.addresses[0]}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>BoD</td>
+            <td md-cell>{{employee.birthPlace}}, {{employee.birthDate | date}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>RFID</td>
+            <td md-cell>{{employee.rfid}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Identity</td>
+            <td md-cell>{{employee.identityType}} : {{ employee.identityNo }}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Phone</td>
+            <td md-cell>{{employee.phones[0]}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Email</td>
+            <td md-cell>{{employee.email}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Status</td>
+            <td md-cell>{{ employee.status === 'a' ? 'Active' : employee.status === 's' ? 'Suspended' : '-' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+
+  <div flex=50>
+    <md-card>
+      <div layout-padding>Approval Status</div>
+      <md-divider></md-divider>
+
+      <div ng-repeat="a in employee.approvals">
+        <div layout-padding>
+          <employee id="a.approver"></employee>
+          {{ a.status == 'a' ? 'Approved' : a.status == 'r' ? 'Rejected' : 'Pending' }}
+        </div>
+        <md-divider></md-divider>
+      </div>
+
+      <div ng-if="!employee.approvals" class="text-muted" layout-padding>
+        - No Approval Scheme -
+      </div>
+    </md-card>
+
+    <rfid employee="employee._id"></rfid>
+  </div>
+</div>

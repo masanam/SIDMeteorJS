@@ -1,0 +1,32 @@
+<md-input-container class="md-block md-icon-float">
+  <label>Icon</label>
+  <md-icon md-svg-icon="{{ team.icon || 'application' }}">
+    <md-tooltip>Preview</md-tooltip>
+  </md-icon>
+  <input ng-model="team.icon">
+</md-input-container>
+
+<md-input-container class="md-block" style="margin-bottom:40px">
+  <label>Industry</label>
+  <md-select ng-model="team.industry">
+    <md-option value="">Others</md-option>
+    <md-option ng-value="i" ng-repeat="i in industries">{{ i }}</md-option>
+  </md-select>
+</md-input-container>
+
+
+<md-switch ng-model="team.pm" aria-label="Project Management Tools">
+  Project Management Tools
+</md-switch>
+
+<md-switch ng-model="team.rfidAttendance" aria-label="RFID Attendance">
+  RFID Attendances
+</md-switch>
+
+<md-switch ng-model="team.audit" aria-label="Audit Tools">
+  Audit & Incidents
+</md-switch>
+
+<md-switch ng-model="team.visitors" aria-label="Visitor Log">
+  Visitor Logbook
+</md-switch>

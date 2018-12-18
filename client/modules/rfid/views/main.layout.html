@@ -1,0 +1,32 @@
+<div layout="row">
+  <md-button class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="rfid.list">rfid</md-button>
+
+  <span ng-if="rfid._id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="rfid.update({ id: id })">{{ rfid.name }}</md-button>
+  </span>
+
+  <span ng-if="!rfid._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="rfid.create">Create</md-button>
+  </span>
+
+
+  <span flex></span>
+  <md-button ui-sref="rfid.create">
+    <md-icon md-svg-icon="plus"></md-icon>
+    Add New
+  </md-button>
+
+  <md-button ui-sref="rfid.create-bulk">
+    <md-icon md-svg-icon="plus-circle-multiple-outline"></md-icon>
+    Add Bulk
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<md-content layout="column" flex ui-view>
+</md-content>

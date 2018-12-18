@@ -1,0 +1,24 @@
+<section layout-align="center center" layout="row" layout-padding>
+  <form ng-init="findOne()" ng-submit="update(license)" flex=60>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Update License</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-content>
+        <div ng-include="'/client/modules/licenses/views/_form.partial.html'"></div>
+      </md-content>
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Update</md-button>
+        <md-button ui-sref="licenses.list">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

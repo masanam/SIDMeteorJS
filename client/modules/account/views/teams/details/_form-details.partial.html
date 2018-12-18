@@ -1,0 +1,72 @@
+<md-input-container class="md-block">
+  <label>Teams Name</label>
+  <input ng-model="team.name">
+</md-input-container>
+
+<md-input-container class="md-block md-icon-float">
+  <label>Icon</label>
+  <md-icon md-svg-icon="{{ team.icon || 'application' }}">
+    <md-tooltip>Preview</md-tooltip>
+  </md-icon>
+  <input ng-model="team.icon">
+</md-input-container>
+
+<md-input-container class="md-block" style="margin-bottom:40px">
+  <label>Industry</label>
+  <md-select ng-model="team.industry">
+    <md-option value="">Others</md-option>
+    <md-option ng-value="i" ng-repeat="i in industries">{{ i }}</md-option>
+  </md-select>
+</md-input-container>
+
+<md-input-container class="md-block">
+  <label>About the Team</label>
+  <input ng-model="team.about">
+</md-input-container>
+
+<md-input-container class="md-block">
+  <label>Website (www.example.com)</label>
+  <input ng-model="team.website">
+</md-input-container>
+
+<md-input-container class="md-block">
+  <label>City</label>
+  <input ng-model="team.city">
+</md-input-container>
+
+<md-input-container class="md-block">
+  <label>Country</label>
+  <input ng-model="team.country">
+</md-input-container>
+
+<md-switch ng-model="team.subscriptions.asset" aria-label="Project Management Tools">
+  Asset Management
+</md-switch>
+
+<md-switch ng-model="team.subscriptions.vendor" aria-label="Project Management Tools">
+  Outsourcing Vendors
+</md-switch>
+
+<md-switch ng-model="team.subscriptions.audit" aria-label="Audit Tools">
+  Audit & Safety
+</md-switch>
+
+<md-switch ng-model="team.subscriptions.payroll" aria-label="Audit Tools">
+  Payroll
+</md-switch>
+
+<md-switch ng-model="team.subscriptions.reimbursement" aria-label="Audit Tools">
+  Reimbursement
+</md-switch>
+
+<md-switch ng-model="team.subscriptions.pm" aria-label="Project Management Tools">
+  Project Management Tools
+</md-switch>
+
+<md-switch ng-model="team.subscriptions.rfid" aria-label="RFID Attendance">
+  RFID Cards
+</md-switch>
+
+<md-switch ng-model="team.subscriptions.visitors" aria-label="Visitor Log">
+  Visitor Logbook
+</md-switch>

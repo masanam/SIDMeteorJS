@@ -1,0 +1,32 @@
+<div layout="row">
+  <md-button aria-label="home" class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="employees.list">Employees</md-button>
+
+  <span ng-if="employee._id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>{{ employee.salutation }} {{ employee.name }} {{ employee.surname }}, {{ employee.suffix }}</md-button>
+  </span>
+
+  <span ng-if="!employee._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="employees.create.personal">Create</md-button>
+  </span>
+
+  <span ng-if="no">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>Details</md-button>
+  </span>
+
+
+  <span flex></span>
+  <md-button ui-sref="employees.create">
+    <md-icon md-svg-icon="plus"></md-icon>
+    Add New
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<md-content ui-view layout="column" flex>
+</md-content>

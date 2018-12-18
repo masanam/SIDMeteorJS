@@ -1,0 +1,64 @@
+<md-card class="md-no-whitespace">
+    <div layout="row" layout-padding>
+      <div flex>Filters</div>
+
+      <md-menu class=" md-condensed">
+        <md-button class="md-icon-button md-condensed" ng-click="$mdMenu.open()">
+          <md-icon md-svg-icon="dots-vertical"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="resetFilter()">
+              <md-icon md-svg-icon="restart"></md-icon>
+              Reset Filter
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="downloadXLS()">
+              <md-icon md-svg-icon="file-excel"></md-icon>
+              Download as XLS
+            </md-button>
+          </md-menu-item>
+          <md-divider></md-divider>
+          <md-menu-item>
+            <md-button ui-sref="vendors.create">
+              <md-icon md-svg-icon="plus"></md-icon>
+              Create New
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+
+    <md-divider></md-divider>
+
+    <md-content layout-padding flex>
+      <md-switch ng-model="filter.creator" aria-label="filter-creator-vendor">
+        <span ng-if="filter.creator">Vendors by You</span>
+        <span ng-if="!filter.creator">All Vendors</span>
+      </md-switch>
+
+      <div>
+        <md-select ng-model="filter.status" placeholder="Search By Status">
+          <md-option value="">- Search By Status -</md-option>
+          <md-option value="a">Approved</md-option>
+          <md-option value="p">Pending</md-option>
+          <md-option value="r">Rejected</md-option>
+          <md-option value="c">Cancelled</md-option>
+          </md-select>
+        <md-input-container class="md-block" flex>
+          <label>Search By Industry</label>
+          <md-select ng-model="filter.industry">
+            <md-option value="">Others</md-option>
+            <md-option ng-value="i" ng-repeat="i in industries">{{ i }}</md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex>
+          <label>Search By Name</label>
+          <input ng-model="filter.q">
+        </md-input-container>
+
+      </div>
+    </md-content>
+  </md-card>

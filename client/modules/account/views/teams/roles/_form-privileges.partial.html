@@ -1,0 +1,37 @@
+<div layout="row" flex>
+  <md-content flex=30>
+    <md-button ng-click="addRole()">+ Add New</md-button>
+    <md-list flex>
+      <md-list-item class="secondary-button-padding" ng-repeat="r in team.roles track by $index"
+        ng-click="display.selected = $index" style="color:{{ display.selected === $index ? 'green' : 'black' }}">
+        <h3>
+          {{ r.name }}
+          <md-icon ng-if="display.selected !== $index" md-svg-icon="chevron-right"></md-icon>
+          <md-icon ng-if="display.selected === $index" md-svg-icon="arrow-right-drop-circle"></md-icon>
+        </h3>
+        <md-button class="md-secondary md-icon-button" ng-if="display.selected !== $index" ng-click="deleteRole($index)">
+          <md-icon md-svg-icon="delete"></md-icon>
+        </md-button>
+      </md-list-item>
+    </md-list>
+  </md-content>
+
+  <div flex layout-padding>
+    <fieldset ng-if="display.selected > -1">
+      <legend>Roles & Privileges : {{ team.roles[display.selected].name }}</legend>
+      
+      <md-input-container>
+        <label>Role Name</label>
+        <input ng-model="team.roles[display.selected].name">
+      </md-input-container>
+      
+      <div layout="row" layout-wrap flex>
+        <div flex-gt-md=25 flex-gt-sm=33 flex=50 ng-repeat="privilege in privileges">
+          <md-checkbox ng-checked="team.roles[display.selected].privileges.indexOf(privilege) > -1" ng-click="toggle(privilege, team.roles[display.selected])">
+            {{ privilege }}
+          </md-checkbox>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<table md-table ng-init="resetFilter()">
+  <thead md-head>
+    <tr md-row>
+      <th md-column>Vendors Name</th>
+      <th md-column>Total Hours</th>
+    </tr>
+  </thead>
+  <tbody md-body>
+
+    <tr md-row ng-if="vendors.length==0">
+      <td md-cell style="text-align:center;" colspan="2">No Performance Data</td>
+    </tr>
+
+    <tr ng-repeat="v in vendors | orderBy:'legalName'">
+      <td md-cell><a ui-sref="vendors.view({ id: v._id })">{{ v.vendorName[0] }}</a></td>
+      <td md-cell style="padding:7px">
+        {{v.totalHours / 60 / 60 / 1000 | number:0}}
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+<md-table-pagination md-limit="filter.limit" md-limit-options="[20, 50, 100]" md-page="filter.page" md-total="{{vendorsCount.length}}" md-page-select></md-table-pagination>

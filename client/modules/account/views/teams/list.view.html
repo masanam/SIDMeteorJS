@@ -1,0 +1,72 @@
+<section layout="row" ng-init="find()" layout-wrap>
+
+  <div ng-if="!employees[0]" layout="row" layout-align="center center" flex>
+    <h1>You Don't Have Any Team, Please Create Or Select First!!!</h1>
+  </div>
+
+  <div ng-repeat="emp in employees" flex=100 flex-gt-sm=50 flex-gt-md=33 flex-gt-lg=25>
+    <md-card>
+      <div layout="row" layout-align="center center" style="padding-left: 10px">
+        <span flex>
+          Registered as <b>{{ emp.employeeId }} - {{ emp.name }} {{ emp.surname }}</b>
+        </span>
+
+        <span>
+          <md-menu>
+            <md-button class="md-icon-button" ng-click="$mdMenu.open()">
+              <md-icon md-svg-icon="dots-vertical"></md-icon>
+            </md-button>
+            <md-menu-content>
+              <md-menu-item>
+                <md-button ui-sref="account.update-employee({ id: emp._id })"><md-icon md-svg-icon="account-card-details"></md-icon> Edit Data</md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ui-sref="account.team-details({ teamId: emp.team })"><md-icon md-svg-icon="domain"></md-icon> Edit Team</md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ui-sref="account.team-clearances({ teamId: emp.team })"><md-icon md-svg-icon="book-open"></md-icon> Permit Request</md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ui-sref="account.team-roles({ teamId: emp.team })"><md-icon md-svg-icon="key-variant"></md-icon> Roles & Privileges</md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ui-sref="account.team-facilities({ teamId: emp.team })"><md-icon md-svg-icon="factory"></md-icon> Branch/Area/Facilities</md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ui-sref="account.team-approvals({ teamId: emp.team })"><md-icon md-svg-icon="thumbs-up-down"></md-icon> Approval Schemes</md-button>
+              </md-menu-item>
+
+              <md-divider></md-divider>
+
+              <md-menu-item>
+                <md-button ng-click="resign(emp)"><md-icon md-svg-icon="logout"></md-icon> Resign</md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+
+
+        </span>
+      </div>
+
+      <md-divider></md-divider>
+
+      <team-details id="emp.team"></team-details>
+
+      <md-divider></md-divider>
+      <div layout="row" layout-align="end center">
+        <span flex>
+          <md-button ng-if="emp.team == currentUser.currentTeam" class="md-primary md-icon-button">
+            <md-icon md-svg-icon="check-circle"></md-icon>
+            <md-tooltip>You signed in to this team</md-tooltip>
+          </md-button>
+
+          <md-button ng-if="emp.team !== currentUser.currentTeam" ng-click="changeTeam(emp.team)" class="md-icon-button">
+            <md-icon md-svg-icon="circle-outline"></md-icon>
+            <md-tooltip>Switch team to this</md-tooltip>
+          </md-button>
+        </span>
+      </div>
+    </md-card>
+  </div>
+
+</section>

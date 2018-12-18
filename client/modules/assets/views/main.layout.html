@@ -1,0 +1,27 @@
+<div layout="row">
+  <md-button class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="assets.list">assets</md-button>
+
+  <span ng-if="assets._id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="assets.update({ id: id })">{{ assets.name }}</md-button>
+  </span>
+
+  <span ng-if="!assets._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="assets.create">Create</md-button>
+  </span>
+
+
+  <span flex></span>
+  <md-button ui-sref="assets.create">
+    <md-icon md-svg-icon="plus"></md-icon>
+    Add New
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<md-content ui-view layout="column" flex>
+</md-content>

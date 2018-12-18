@@ -1,0 +1,37 @@
+<section  layout="row" ng-init="findOne();resetFilter();" flex>
+  <div flex=20 ng-include="'/client/modules/performance/views/_filter-details.partial.html'">
+  </div>
+
+  <md-card flex>
+    <md-table-container flex>
+
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Date</th>
+            <th md-column>In</th>
+            <th md-column>Out</th>
+            <th md-column>Hours</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+
+          <tr md-row ng-if="performance.length==0">
+            <td md-cell style="text-align:center;" colspan="5">No Performance Data</td>
+          </tr>
+
+          <tr md-row ng-repeat="p in performance | orderBy:'in'">
+            <td md-cell>{{ p.in | date:'yyyy-MM-dd' }}</td>
+            <td md-cell>{{ p.in | date:'HH:mm'  }}</td>
+            <td md-cell>{{ p.out | date:'HH:mm' }} <span ng-if="x = (p.out | date:'dd') - (p.in | date:'dd' )">+{{ x }}d</span></td>
+            <td md-cell ng-init="display.total = display.total + (p.out - p.in)">{{ p.out - p.in | date:'HH:mm:ss':'+0' }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+      <md-table-pagination md-limit="filter.limit" md-limit-options="[20, 50, 100]" md-page="filter.page" md-total="{{performanceCount}}" md-page-select></md-table-pagination>
+
+    </md-table-container>
+  </md-card>
+
+</section>

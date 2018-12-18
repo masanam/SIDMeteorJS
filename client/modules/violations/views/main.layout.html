@@ -1,0 +1,39 @@
+<div layout="row">
+  <md-button aria-label="home" class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="violations.list">Violation</md-button>
+
+  <span ng-if="display.employee&&!display.id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button><employee-data field="name" id="display.employee">{{employee.name}}</employee-data></md-button>
+  </span>
+
+  <span ng-if="display.employee&&display.id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>{{violation.violationNo}}</md-button>
+  </span>
+
+  <span ng-if="display.employee&&display.id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>Details</md-button>
+  </span>
+
+  <span ng-if="display.employee&&currentState==='violations.create'">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>Create</md-button>
+  </span>
+
+
+  <span flex></span>
+  <md-button ng-if="display.employee&&!display.id" ui-sref="violations.create({ employee:display.employee })">
+    <md-icon md-svg-icon="plus"></md-icon>
+    Add Violation
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<md-content flex>
+
+  <ui-view></ui-view>
+</md-content>

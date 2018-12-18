@@ -1,0 +1,25 @@
+<section layout-align="center" layout="row" layout-padding>
+  <form name="licenseForm" ng-init="resetForm()" ng-submit="create(license)" flex=60>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Register License</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content>
+        <div ng-include="'/client/modules/licenses/views/_form.partial.html'"></div>
+      </md-card-content>
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit" ng-disabled="licenseForm.$invalid">Submit</md-button>
+        <md-button ng-click="resetForm()">Reset Form</md-button>
+        <md-button ui-sref="licenses.list">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

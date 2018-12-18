@@ -1,0 +1,45 @@
+<section layout="row" flex>
+  <md-content flex=30>
+    <md-list flex>
+      <md-list-item ng-repeat="as in aSchemes track by $index"
+        ng-click="display.selected = $index" style="color:{{ display.selected === $index ? 'green' : 'black' }}">
+        <md-icon md-svg-icon="{{ as.icon }}" class="md-avatar"></md-icon>
+        <p>
+          {{ as.title }}
+          <md-icon ng-if="display.selected !== $index" md-svg-icon="chevron-right"></md-icon>
+          <md-icon ng-if="display.selected === $index" md-svg-icon="arrow-right-drop-circle"></md-icon>
+        </p>
+
+        <md-switch class="md-secondary" ng-model="team.approvalSchemes[as.title].active" ng-change="display.selected = $index"></md-switch>
+      </md-list-item>
+    </md-list>
+  </md-content>
+
+  <md-divider></md-divider>
+
+  <md-content ng-if="display.selected > -1" flex layout-padding>
+    <h1 class="md-subhead">Approval Sequences</h1>
+
+    <fieldset ng-repeat="seq in team.approvalSchemes[aSchemes[display.selected].title].sequences track by $index">
+      <legend>Sequence {{ $index }}</legend>
+
+      <div layout="row" layout-align="center center">
+        <md-select placeholder="Role" ng-model="seq.role" required flex>
+          <md-option value="">-Select Role-</md-option>
+          <md-option ng-repeat="r in team.roles track by $index" ng-value="r.name">{{ r.name }}</md-option>
+        </md-select>
+
+        <md-select placeholder="Approval Type" ng-model="seq.type" required flex>
+          <md-option value="">-Select Type-</md-option>
+          <md-option ng-repeat="t in aTypes" ng-value="t.value">{{ t.label }}</md-option>
+        </md-select>
+
+        <md-button class="md-icon-button" ng-click="deleteSequence(aSchemes[$index].title, $index)">
+          <md-icon md-svg-icon="close"></md-icon>
+        </md-button>
+      </div>
+    </fieldset>
+    
+    <md-button ng-click="addSequence(aSchemes[$index].title)">+ Add Sequence</md-button>
+  </md-content>
+</section>

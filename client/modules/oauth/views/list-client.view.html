@@ -1,0 +1,56 @@
+<div layout="row">
+  <md-button class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="oauth.list-client">Clients</md-button>
+
+  <span ng-if="client._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="oauth.upsert-client({ id: id })">{{ client.clientName }}</md-button>
+  </span>
+
+  <span ng-if="!client._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="oauth.upsert-client">Create</md-button>
+  </span>
+
+  <span flex></span>
+  <md-button ui-sref="oauth.upsert-client">
+    <md-icon md-svg-icon="plus"></md-icon>
+    Add New
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<section ng-init="find()">
+  <md-card>
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Client ID</th>
+            <th md-column>Client Name</th>
+            <th md-column>Redirect URI</th>
+            <th md-column></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="client in clients">
+            <td md-cell>{{client.clientId}}</td>
+            <td md-cell>{{client.clientName}}</td>
+            <td md-cell>{{client.redirectUri}}</td>
+
+            <td md-cell>
+              <md-button class="md-icon-button" ui-sref="oauth.upsert-client({ clientId: client._id })">
+                <md-icon md-svg-icon="pencil"></md-icon>
+              </md-button>
+              <md-button class="md-icon-button" ng-click="deleteClient(client)">
+                <md-icon md-svg-icon="delete"></md-icon>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+</section>

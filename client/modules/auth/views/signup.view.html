@@ -1,0 +1,56 @@
+<form  method="post" role="form" ng-submit="signup(registration)" layout-padding>
+  <div layout="row">
+    <div layout-padding flex>
+      <md-input-container class="md-icon-float md-block">
+        <label>Name</label>
+        <md-icon md-svg-icon="account"></md-icon>
+        <input ng-model="registration.profile.name" type="text" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Phone Number</label>
+        <md-icon md-svg-icon="cellphone"></md-icon>
+        <input ng-model="registration.profile.phone" type="number" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Email</label>
+        <md-icon md-svg-icon="email"></md-icon>
+        <input ng-model="registration.email" type="email" ng-disabled="invite" required="!invite">
+      </md-input-container>
+    </div>
+
+    <div layout-padding flex>
+      <md-input-container class="md-icon-float md-block">
+        <label>Username</label>
+        <md-icon md-svg-icon="account-key"></md-icon>
+        <input ng-model="registration.username" type="text" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Password</label>
+        <md-icon md-svg-icon="key"></md-icon>
+        <input ng-model="registration.password" type="password" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Confirm Password</label>
+        <md-icon md-svg-icon="key-change"></md-icon>
+        <input ng-model="registration.confirmPassword" type="password" required>
+      </md-input-container>
+    </div>
+  </div>
+
+  <div ng-if="display.error" class="error-notice">{{ display.error }}</div>
+
+  <div layout-align="center" layout="row">
+    <a ui-sref="auth.signin">I already have a username</a>
+  </div>
+
+  <div layout-align="center" layout="row">
+    <md-button type="submit" class="md-raised md-primary">Register</md-button>
+    <md-button type="reset">Reset</md-button>
+  </div>
+
+
+</form>

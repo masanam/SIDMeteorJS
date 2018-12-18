@@ -1,0 +1,13 @@
+<md-input-container class="md-block">
+  <label>Email</label>
+  <input ng-model="invitation.email" type="email" required>
+</md-input-container>
+
+<md-input-container class="md-block">
+  <label>Message</label>
+  <textarea ng-model="invitation.message" md-maxlength="100" rows="2" md-select-on-focus required></textarea>
+</md-input-container>
+
+<div ng-if="display.error" class="error-notice">
+  {{ display.error }}
+</div>

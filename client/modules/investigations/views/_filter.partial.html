@@ -1,0 +1,47 @@
+<md-card class="md-no-whitespace">
+    <div layout="row" layout-padding>
+      <div flex>Filters</div>
+
+      <md-menu class=" md-condensed">
+        <md-button class="md-icon-button md-condensed" ng-click="$mdMenu.open()">
+          <md-icon md-svg-icon="dots-vertical"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="resetFilter()">
+              <md-icon md-svg-icon="restart"></md-icon>
+              Reset Filter
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="downloadXLS()">
+              <md-icon md-svg-icon="file-excel"></md-icon>
+              Download as XLS
+            </md-button>
+          </md-menu-item>
+          <md-divider></md-divider>
+        </md-menu-content>
+      </md-menu>
+    </div>
+
+    <md-divider></md-divider>
+
+    <md-content layout-padding flex>
+      <div>
+        <md-datepicker ng-model="filter.slated" style="margin-left:-20px" placeholder="Slated Date"></md-datepicker>
+
+        <md-datepicker ng-model="filter.due" style="margin-left:-20px" placeholder="Due Date"></md-datepicker>
+
+        <md-input-container class="md-block" flex>
+          <label>Search By Reporter</label>
+          <input ng-model="filter.name">
+        </md-input-container>
+
+        <md-input-container class="md-block" flex>
+          <label>Search By Total Victims</label>
+          <input ng-model="filter.victim" type="number">
+        </md-input-container>
+      </div>
+
+    </md-content>
+</md-card>

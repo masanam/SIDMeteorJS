@@ -1,0 +1,26 @@
+<section layout-align="center" layout="row">
+
+  <form ng-submit="create(team)" flex=80>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Create Your Team</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <div ng-include="'/client/modules/account/views/teams/details/_form-details.partial.html'" layout-padding></div>
+
+
+
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Create</md-button>
+        <md-button ui-sref="account.teams">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

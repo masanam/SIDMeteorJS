@@ -1,0 +1,68 @@
+  <md-content  ng-controller="InvestigationFormController" ng-init="listArray()" layout-padding>
+
+    <div layout="row">
+      <md-input-container class="md-block">
+        <div flex-gt-xs>
+          <md-datepicker ng-model="investigation.slated" md-placeholder="Incident Date" required></md-datepicker>
+        </div>
+      </md-input-container>
+    </div>
+
+    <div layout="row">
+      <md-input-container flex="50">
+          <label>Reporter Name</label>
+          <input ng-model="investigation.name" required>
+      </md-input-container>
+      <md-input-container flex="50">
+          <label>Reporter Nickname</label>
+          <input ng-model="investigation.nickname" required>
+      </md-input-container>
+    </div>
+
+    <div layout="row">
+      <md-input-container flex="50">
+          <label>Reporter Position</label>
+          <md-select ng-model="investigation.position" name="loc" >
+            <md-option ng-repeat="pos in select.reporterPos" value="{{ pos }}" required>{{ pos }}</md-option>
+          </md-select>
+      </md-input-container>
+
+      <md-input-container flex="50">
+          <label>Reporter Department</label>
+          <input ng-model="investigation.deptInCharge" required>
+      </md-input-container>
+    </div>
+
+    <md-input-container class="md-block">
+        <label>Reporter Phone Number</label>
+        <input ng-model="investigation.phone" required>
+    </md-input-container>
+
+    <div layout="row">
+      <md-input-container flex="50">
+          <label>Incident Location</label>
+          <input ng-model="investigation.location" required>
+      </md-input-container>
+
+      <md-input-container flex="50">
+          <label>Total Victim</label>
+          <input ng-model="investigation.victim" type="number" required>
+      </md-input-container>
+    </div>
+
+    <md-input-container class="md-block">
+        <label>Chronology Occurence</label>
+        <textarea ng-model="investigation.chronology" md-maxlength="200" rows="2" md-select-on-focus required></textarea>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+        <label>Incident Effect</label>
+        <input ng-model="investigation.effect" required>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+        <label>Action Plan</label>
+        <textarea ng-model="investigation.action" md-maxlength="300" rows="2" md-select-on-focus required></textarea>
+    </md-input-container>
+
+  </md-content>

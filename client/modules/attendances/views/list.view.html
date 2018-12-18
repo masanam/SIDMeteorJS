@@ -1,0 +1,41 @@
+<section ng-init="find()" layout="row" flex>
+  <div flex=16 ng-include="'/client/modules/attendances/views/_filter.partial.html'">
+  </div>
+
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Name</th>
+            <th md-column>Date</th>
+            <th md-column>In</th>
+            <th md-column>Out</th>
+            <th md-column>Status</th>
+            <th md-column></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+
+          <tr md-row ng-if="attendances.length==0">
+            <td md-cell style="text-align:center;" colspan="6">No Attendances Data</td>
+          </tr>
+          <tr md-row ng-repeat="a in attendances | orderBy:'in'">
+            <td md-cell ng-if="a.employee"><employee id="a.employee"></employee></td>
+            <td md-cell ng-if="a.visitor"><visitor id="a.visitor"></visitor></td>
+            <td md-cell>{{ a.in | date:'yyyy-MM-dd' }}</td>
+            <td md-cell>{{ a.in | date:'HH:mm'  }}</td>
+            <td md-cell>{{ a.out | date:'HH:mm'  }}</td>
+            <td md-cell ng-switch="a.status">
+              <span ng-switch-when="s">Success</span>
+              <span ng-switch-when="u">Denied</span>
+            </td>
+            <td md-cell ng-if="a.employee"><md-button class="md-raised md-primary" ui-sref="performance.view({ id:a.employee })">performance</md-button></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </md-table-container>
+    <md-table-pagination md-limit="filter.limit" md-limit-options="[20, 50, 100]" md-page="filter.page" md-total="{{attendancesCount}}" md-page-select></md-table-pagination>
+  </md-card>
+</section>

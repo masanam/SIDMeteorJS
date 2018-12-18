@@ -1,0 +1,50 @@
+<section ng-init="find(); findOne()" layout="row" flex>
+  <div flex=18 ng-include="'/client/modules/licenses/views/_filter.partial.html'">
+  </div>
+
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column ng-if="!display.id">Badge ID</th>
+            <th md-column>Name</th>
+            <th md-column>License</th>
+            <th md-column ng-if="!display.id"></th>
+
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-if="licenses.length==0">
+            <td md-cell style="text-align:center;" colspan="5">No Licenses Data</td>
+          </tr>
+          <tr md-row ng-repeat="s in licenses">
+            <td md-cell  ng-if="!display.id">{{ s.rfid }}</td>
+            <td md-cell><a ui-sref="licenses.view({ id:s._id })"><employee id="s.employee"></employee></a></td>
+            <td md-cell>
+              <span ng-repeat="t in s.details">
+                {{ t.type }}{{$last ? '' : ', '}}
+              </span>
+            </td>
+            <td md-cell ng-if="!display.id">
+              <md-button class="md-icon-button" ui-sref="licenses.update({ id: s._id })">
+                <md-icon md-svg-icon="pencil"></md-icon>
+                <md-tooltip>Edit</md-tooltip>
+              </md-button>
+              <md-button class="md-icon-button" ng-click="delete(s)">
+                <md-icon md-svg-icon="delete"></md-icon>
+                <md-tooltip>Delete</md-tooltip>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="filter.limit" md-limit-options="[20, 50, 100]" md-page="filter.page" md-total="{{licensesCount}}" md-page-select></md-table-pagination>
+  </md-card>
+
+  <div flex=50 ng-if="display.id" ng-include="'/client/modules/licenses/views/_details.partial.html'">
+  </div>
+
+</section>

@@ -1,0 +1,103 @@
+<md-card flex>
+  <md-card-title layout="row">
+    <md-card-title-text flex=25>
+      <span class="md-headline">{{ visitor.name }}</span>
+    </md-card-title-text>
+    <span flex></span>
+    <md-card-actions layout="row" layout-align="end center" flex=30 style="margin-top:-5px;">
+      <md-button class="md-icon-button" ui-sref="visitors.update({ id: visitor._id })">
+        <md-icon md-svg-icon="pencil"></md-icon>
+        <md-tooltip>Edit</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="delete(visitor)">
+        <md-icon md-svg-icon="delete"></md-icon>
+        <md-tooltip>Delete</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ui-sref="visitors.list">
+        <md-icon md-svg-icon="close"></md-icon>
+        <md-tooltip>Back</md-tooltip>
+      </md-button>
+    </md-card-actions>
+  </md-card-title>
+</md-card>
+
+<md-card>
+  <approval-panel ref="display.id" model="'Visitor'" owner="visitor.sponsor"></approval-panel>
+</md-card>
+
+<div layout="row">
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column width="30%">Details</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row>
+            <td md-cell>Name</td>
+            <td md-cell>{{visitor.name}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Institution</td>
+            <td md-cell>{{visitor.institution}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Address</td>
+            <td md-cell>{{visitor.address}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Validity</td>
+            <td md-cell>{{visitor.slated | date}} to {{visitor.due | date}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>RFID</td>
+            <td md-cell>{{visitor.rfid}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Identity</td>
+            <td md-cell>{{visitor.identityType}} : {{ visitor.identityNo }}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Phone</td>
+            <td md-cell>{{visitor.phone}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Email</td>
+            <td md-cell>{{visitor.email}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Sponsor</td>
+            <td md-cell><employee id="visitor.sponsor"></employee></td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Status</td>
+            <td md-cell ng-switch="visitor.status">
+              <span ng-switch-when="a">Approved</span>
+              <span ng-switch-when="p">Pending</span>
+              <span ng-switch-when="r">Rejected</span>
+              <span ng-switch-default>Cancelled</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+
+  <div flex=50>
+    <approval-history ref="visitor._id" model="'Visitor'"></approval-history>
+
+    <rfid visitor="visitor._id"></rfid>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div style="background:rgba(255,255,255,0.5); border:solid 1px rgba(0,0,0,0.1); border-radius:5px; margin-top:5px">
+  <div class="md-headline" layout-padding>GENERAL DATA</div>
+
+  <md-divider></md-divider>
+
+  <div ng-include="'/client/modules/visitors/views/_form-general.partial.html'"></div>
+
+
+</div>
+
+<!-- visitor information here -->
+
+<div style="background:rgba(255,255,255,0.5); border:solid 1px rgba(0,0,0,0.1); border-radius:5px; margin-top:5px">
+  <div class="md-headline" layout-padding layout="row">
+
+    <span>VISITOR DATA</span>
+
+    <span flex></span>
+    <md-button ng-click="!visitor.identities ? visitor.identities = [{}] : visitor.identities.push({});">
+      Add Visitor<md-icon md-svg-icon="plus"></md-icon>
+    </md-button>
+  </div>
+  <md-divider></md-divider>
+
+  <div ng-include="'/client/modules/visitors/views/_form-visitor.partial.html'"></div>
+
+  <md-divider ng-if="visitor.identities.length !== $index+1"></md-divider>
+  </div>
+</div>

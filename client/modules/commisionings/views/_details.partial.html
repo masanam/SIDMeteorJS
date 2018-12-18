@@ -1,0 +1,71 @@
+<section layout="row" flex>
+  <div layout-align="center center">
+    <div>
+      <md-card flex>
+        <md-card-actions layout="row" layout-align="end start">
+        <md-button class="md-icon-button" ui-sref="commisionings.list">
+          <md-icon md-svg-icon="close"></md-icon>
+          <md-tooltip>Back</md-tooltip>
+        </md-button>
+        </md-card-actions>
+        <md-button ui-sref="commisionings.photo({id:id})" flex>
+          <md-icon md-svg-icon="image"></md-icon>
+          View Document
+        </md-button>
+      </md-card>
+
+      <md-card flex>
+        <md-table-container flex>
+          <table md-table>
+            <thead md-head>
+              <tr md-row>
+                <th md-column width="30%">Details</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody md-body>
+              <tr md-row>
+                <td md-cell>Date of Entry</td>
+                <td md-cell>{{commisioning.created | date}}</td>
+              </tr>
+
+              <tr md-row>
+                <td md-cell>Due Date</td>
+                <td md-cell>{{commisioning.due | date}}</td>
+              </tr>
+
+              <tr md-row>
+                <td md-cell>Inspector</td>
+                <td md-cell>{{commisioning.inspector}}</td>
+              </tr>
+
+              <tr md-row>
+                <td md-cell>Responsible Company</td>
+                <td md-cell>{{commisioning.responsiblecompany}}</td>
+              </tr>
+
+              <tr md-row>
+                <td md-cell>Location</td>
+                <td md-cell>{{commisioning.location}}</td>
+              </tr>
+
+              <tr md-row>
+                <td md-cell>Access Area</td>
+                <td md-cell>{{commisioning.accessarea}}</td>
+              </tr>
+
+              <tr md-row>
+                <td md-cell>Document Type</td>
+                <td md-cell>
+                  <li ng-repeat="item in commisioning.doctype">{{ item }}</li>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </md-table-container>
+    </div>
+  </div>
+
+</section>

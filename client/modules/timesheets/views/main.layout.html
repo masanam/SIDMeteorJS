@@ -1,0 +1,24 @@
+<div layout="row">
+  <md-button class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="timesheets.list">Timesheet</md-button>
+
+  <span flex></span>
+  
+  <md-button class="md-short-button" ng-class="display.agenda ? 'md-primary md-raised' : ''" ng-click="display.agenda = !display.agenda">
+    <md-icon md-svg-icon="calendar-range"></md-icon>
+    <md-tooltip>Agenda & Attendance</md-tooltip>
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<md-content layout="column" flex>
+  <md-card  ng-if="display.agenda" ng-include="'/client/modules/timesheets/views/_agenda.partial.html'"></md-card>
+
+  <md-sidenav class="md-sidenav-left" md-component-id="projects" ng-include="'/client/modules/timesheets/views/+projects.nav.html'"></md-sidenav>
+
+  <ui-view layout="column" flex></ui-view>
+
+  <md-sidenav class="md-sidenav-right" md-component-id="tasks" ng-include="'/client/modules/timesheets/views/+tasks.nav.html'"></md-sidenav>
+</md-content>

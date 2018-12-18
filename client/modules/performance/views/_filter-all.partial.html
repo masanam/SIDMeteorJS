@@ -1,0 +1,70 @@
+<md-card class="md-no-whitespace">
+    <div layout="row" layout-padding>
+      <div flex>Filters</div>
+
+      <md-menu class=" md-condensed">
+        <md-button class="md-icon-button md-condensed" ng-click="$mdMenu.open()">
+          <md-icon md-svg-icon="dots-vertical"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="resetFilter()">
+              <md-icon md-svg-icon="restart"></md-icon>
+              Reset Filter
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="downloadXLS()">
+              <md-icon md-svg-icon="file-excel"></md-icon>
+              Download as XLS
+            </md-button>
+          </md-menu-item>
+          <md-divider></md-divider>
+        </md-menu-content>
+      </md-menu>
+    </div>
+
+    <md-divider></md-divider>
+
+    <md-content layout-padding flex>
+      <md-switch ng-model="filter.role" ng-change="changeRole(filter.role)" aria-label="filter-employee-vendor">
+        <span ng-if="!filter.role">Employees</span>
+        <span ng-if="filter.role">Vendors</span>
+      </md-switch>
+
+      <div>
+          <div style="margin-top:10px">
+
+          <md-input-container class="md-block">
+            <label>Month</label>
+            <md-select ng-model="filter.month" ng-change="displayDate()">
+              <md-option ng-repeat="m in select.months" value="{{m}}">{{m}}</md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Year</label>
+            <md-select ng-model="filter.year" ng-change="displayDate()">
+              <md-option ng-repeat="y in select.years()" value="{{y}}">{{y}}</md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-input-container ng-if="role" class="md-block" flex>
+            <label>Search By Name</label>
+            <input ng-model="filter.name">
+          </md-input-container>
+
+          <vendor-autocomplete ng-if="!role" model="filter.vendor" label="'Search by Vendor'" > </vendor-autocomplete>
+
+        </div>
+      </div>
+    </md-content>
+</md-card>
+
+
+<md-card ng-if="role">
+  <div layout="row" layout-padding>
+    <div class="present"></div> : Hadir <br>
+    <div class="not-present"></div> : Tidak Hadir
+  </div>
+</md-card>

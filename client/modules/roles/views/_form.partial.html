@@ -1,0 +1,27 @@
+
+<md-input-container class="md-block">
+  <label>Roles Name</label>
+  <input ng-model="roles.name">
+</md-input-container>
+
+<md-input-container class="md-block">
+  <label>Roles Desc</label>
+  <input ng-model="roles.desc">
+</md-input-container>
+
+<div ng-controller="teamsController">
+<md-input-container class="md-block">
+  <label>Company</label>
+  <md-select name="singleSelect" ng-model="roles.org">
+    <md-option ng-repeat="org in teamss" value="{{org.name}}">{{org.name}}</md-option>
+  </md-select>
+</md-input-container>
+</div>
+
+<md-input-container class="md-block">
+  <label>Status</label>
+  <md-select name="singleSelect" ng-model="roles.status">
+    <md-option value="Active">Active</md-option>
+    <md-option value="InActive">InActive</md-option>
+  </md-select>
+</md-input-container>

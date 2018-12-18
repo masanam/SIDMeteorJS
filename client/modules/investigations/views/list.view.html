@@ -1,0 +1,46 @@
+<section ng-init="find(); findOne()" layout="row" flex>
+  <div flex=15 ng-include="'/client/modules/investigations/views/_filter.partial.html'">
+  </div>
+
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Date</th>
+            <th md-column>Reporter</th>
+            <th md-column>Location</th>
+            <th md-column>Victims</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-if="investigations.length==0">
+            <td md-cell style="text-align:center;" colspan="5">No Investigation List</td>
+          </tr>
+          <tr md-row ng-repeat="inv in investigations">
+            <td md-cell>{{ inv.created | date}}</td>
+            <td md-cell><a ui-sref="investigations.view({ id:inv._id })">{{ inv.nickname }}</td>
+            <td md-cell>{{ inv.location }}</td>
+            <td md-cell>{{ inv.victim }}</td>
+            <td md-cell ng-if="!display.id">
+              <md-button class="md-icon-button" ui-sref="investigations.update({ id: inv._id })">
+                <md-icon md-svg-icon="pencil"></md-icon>
+                <md-tooltip>Edit</md-tooltip>
+              </md-button>
+              <md-button class="md-icon-button" ng-click="delete(inv)">
+                <md-icon md-svg-icon="delete"></md-icon>
+                <md-tooltip>Delete</md-tooltip>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="filter.limit" md-limit-options="[20, 50, 100]" md-page="filter.page" md-total="{{investigationsCount}}" md-page-select></md-table-pagination>
+  </md-card>
+
+  <div flex=50 ng-if="display.id" ng-include="'/client/modules/investigations/views/_details.partial.html'">
+  </div>
+
+</section>

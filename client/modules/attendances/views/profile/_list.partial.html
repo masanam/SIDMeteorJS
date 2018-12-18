@@ -1,0 +1,39 @@
+<section>
+
+  <md-card>
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+
+        </thead>
+        <tbody md-body>
+          <tr>
+            <td rowspan="7">
+              <img ng-src="./public/images/user.png" width="220" height="280">
+            </td>
+          </tr>
+          <tr md-row>
+            <td md-cell><b>Employee ID</td><td md-cell>{{ employees.employeesId }}</td>
+          </tr>
+          <tr md-row>
+            <td md-cell><b>Name</td><td md-cell>{{ employees.name }}</td>
+          </tr>
+          <tr md-row>
+            <td md-cell><b>Role</td><td md-cell>{{ employees.roles }}</td>
+          </tr>
+          <tr md-row>
+            <td md-cell><b>Team</td><td md-cell>{{ employees.teams }}</td>
+          </tr>
+          <tr md-row>
+            <td md-cell><b>Identity</td><td md-cell>{{ employees.rfid }}</td>
+          </tr>
+          <tr md-row>
+            <td md-cell><b>Blacklisted</td>
+              <td ng-if="employees.blacklisted==='true'" md-cell>Yes</td>
+              <td ng-if="employees.blacklisted==='false'" md-cell>No</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+</section>

@@ -1,0 +1,35 @@
+<md-card ng-if="!rfid">
+  <div layout="row" layout-padding="end" flex>
+    <md-icon md-svg-icon="credit-card-off"></md-icon>
+  </div>
+  <md-divider></md-divider>
+  <md-content layout-padding>
+    <p style="color:gray">RFID CARD NOT ASSIGNED</p>
+  </md-content>
+</md-card>
+
+
+<md-card>
+  <div ng-repeat="r in rfid" ui-sref="rfid._id">
+    <md-content ng-if="r.status === 'a'" md-theme="dark">
+      <div layout="row" layout-padding flex>
+        <md-icon md-svg-icon="credit-card"></md-icon>
+      </div>
+      <md-divider></md-divider>
+      <div layout-padding>
+        <div># {{ r.rfid }}</div>
+        <div>{{ r.slated | date:'yy/MM' }} - {{ r.due | date:'yy/MM' }} / Active</div>
+      </div>
+    </md-content>
+
+    <md-content ng-if="r.status !== 'a'">
+      <div layout="row" ng-switch="r.status" layout-align="spaces-between" layout-padding>
+        <span flex>{{ r.rfid }}</span>
+        <span ng-switch-when="p">Pending</span>
+        <span ng-switch-when="m">Missing</span>
+        <span ng-switch-when="d">Deactivated</span>
+      </div>
+      <md-divider></md-divider>
+    </md-content>
+  </div>
+</md-card>

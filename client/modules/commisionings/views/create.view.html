@@ -1,0 +1,24 @@
+<section layout-align="center" layout="row" layout-padding>
+  <form ng-init="resetForm(); findOne()" ng-submit="create(commisioning)" flex=60>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Add Commisionings</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content>
+        <div ng-include="'/client/modules/commisionings/views/_form.partial.html'"></div>
+      </md-card-content>
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Add</md-button>
+        <md-button ui-sref="commisionings.list({asset: filter.asset})">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

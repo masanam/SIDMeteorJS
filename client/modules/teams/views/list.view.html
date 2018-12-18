@@ -1,0 +1,34 @@
+<section>
+
+  <md-card>
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Icon</th>
+            <th md-column>Name</th>
+            <th md-column>Website</th>
+            <th md-column>City</th>
+            <th md-column></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="t in teams">
+            <td md-cell><md-icon md-svg-icon="{{ t.icon }}"></md-icon></td>
+            <td md-cell>{{t.name}}</td>
+            <td md-cell>{{t.website}}</td>
+            <td md-cell>{{t.city}}, {{t.country}}</td>
+            <td md-cell>
+              <md-button aria-label="update-team" class="md-icon-button" ui-sref="teams.update({ id: t._id })">
+                <md-icon md-svg-icon="pencil"></md-icon>
+              </md-button>
+              <md-button aria-label="delete-team" class="md-icon-button" ng-click="delete(t)">
+                <md-icon md-svg-icon="delete"></md-icon>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+</section>

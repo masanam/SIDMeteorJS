@@ -1,0 +1,18 @@
+<div layout="row">
+  <md-button aria-label="home" class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="attendances.list">Attendance</md-button>
+
+  <span ng-if="attendance._id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="attendances.update({ id: id })">{{ attendances.name }}</md-button>
+  </span>
+
+
+  <span flex></span>
+</div>
+
+<md-divider></md-divider>
+
+<md-content layout="column" ui-view flex>
+</md-content>

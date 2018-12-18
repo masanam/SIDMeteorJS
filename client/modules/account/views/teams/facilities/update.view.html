@@ -1,0 +1,24 @@
+<section layout-align="center" ng-controller="AccountRolesController" layout="row" flex>
+
+  <form ng-init="findOne()" ng-submit="update(team)" flex=80>
+    <md-card flex>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Permit Request</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <div ng-include="'/client/modules/account/views/teams/clearances/_form-clearances.partial.html'" layout-padding></div>
+
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit">Update All</md-button>
+        <md-button ui-sref="account.teams">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

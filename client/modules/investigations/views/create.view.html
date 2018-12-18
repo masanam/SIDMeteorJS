@@ -1,0 +1,25 @@
+<section layout-align="center center" layout="row" layout-padding>
+  <form name="investigationForm" ng-init="resetForm()" ng-submit="create(investigation)" flex=60>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <h1 class="md-headline">Create New Incident</h1>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content>
+        <div ng-include="'/client/modules/investigations/views/_form.partial.html'"></div>
+      </md-card-content>
+
+      <md-divider></md-divider>
+
+      <md-card-action>
+        <md-button class="md-raised md-primary" type="submit" ng-disabled="investigationForm.$invalid">Create</md-button>
+        <md-button ng-click="resetForm()">Reset Form</md-button>
+        <md-button ui-sref="investigations.list">Cancel</md-button>
+      </md-card-action>
+    </md-card>
+  </form>
+</section>

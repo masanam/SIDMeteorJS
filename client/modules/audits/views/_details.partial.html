@@ -1,0 +1,35 @@
+<md-card flex>
+  <md-card-title layout="row">
+    <md-card-title-text flex=25>
+      <span class="md-headline" ng-if="audit.inspected">{{ audit.inspected }}'s Inspection</span>
+      <span class="md-headline" ng-if="audit.observed">{{ audit.observed }}'s Observation</span>
+      <span ng-if="audit.edited" class="md-subhead">Edited at {{ audit.edited | date }}</span>
+    </md-card-title-text>
+    <span flex></span>
+    <md-card-actions layout="row" layout-align="end center" flex=30 style="margin-top:-5px;">
+      <md-button class="md-icon-button" ui-sref="audits.update({ id: audit._id })">
+        <md-icon md-svg-icon="pencil"></md-icon>
+        <md-tooltip>Edit</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="delete(audit)">
+        <md-icon md-svg-icon="delete"></md-icon>
+        <md-tooltip>Delete</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ui-sref="audits.list">
+        <md-icon md-svg-icon="close"></md-icon>
+        <md-tooltip>Back</md-tooltip>
+      </md-button>
+    </md-card-actions>
+  </md-card-title>
+
+  <md-divider></md-divider>
+
+</md-card>
+
+<div layout="row">
+  <md-card flex>
+    <md-table-container flex>
+      <div ng-include="'/client/modules/audits/views/table.list.view.html'"></div>
+    </md-table-container>
+  </md-card>
+</div>

@@ -1,0 +1,43 @@
+<div layout="row">
+  <md-button class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+
+    <span ng-if="filter.asset">
+      <md-icon md-svg-icon="chevron-right"></md-icon>
+      <md-button ui-sref="assets.list">assets</md-button>
+    </span>
+
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="commisionings.all">commisionings</md-button>
+
+  <span ng-if="display.id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>
+      <asset id="commisioning.asset" field="serial"></asset> -
+      <asset id="commisioning.asset" field="name"></asset>
+    </md-button>
+  </span>
+
+  <span ng-if="!display.id&&display.asset">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+      <md-button>
+        <asset id="display.asset" field="serial"></asset> -
+        <asset id="display.asset" field="name"></asset>
+      </md-button>
+  </span>
+
+
+<span flex></span>
+<span flex></span>
+
+  <md-button ng-if="display.asset" ui-sref="commisionings.create({ asset: filter.asset })" ng-click="type(filter.asset)">
+    <md-icon md-svg-icon="plus"></md-icon> Add Commisionings </md-icon>
+  </md-button>
+
+  </span>
+
+</div>
+
+<md-divider></md-divider>
+
+<md-content layout="column" flex ui-view>
+</md-content>

@@ -1,0 +1,68 @@
+<div layout="row">
+      <md-input-container class="md-block" flex style="margin-left:-10px">
+      <label>Slate Date</label>
+      <div flex-gt-xs>
+        <md-datepicker ng-model="commisioning.slated" md-placeholder="Enter Date" required></md-datepicker>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block" flex style="margin-left:-10px">
+      <label>Due Date</label>
+      <div flex-gt-xs>
+        <md-datepicker ng-model="commisioning.due" md-placeholder="Enter Date" required></md-datepicker>
+      </div>
+    </md-input-container>
+  </div>
+
+  <md-input-container class="md-block">
+    <label>Inspector</label>
+    <input ng-model="commisioning.inspector" required>
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <label>Responsible Company</label>
+    <input ng-model="commisioning.responsiblecompany" required>
+  </md-input-container>
+
+<div layout="row">
+  <md-input-container class="md-block" flex>
+    <label>Location</label>
+    <md-select name="singleSelect" ng-model="commisioning.location" required>
+      <md-option value="Head Office">Head Office</md-option>
+      <md-option value="Site">Site</md-option>
+      <md-option value="Location 1">Location 1</md-option>
+      <md-option value="Location 2">Location 2</md-option>
+      <md-option value="Location 3">Location 3</md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Area</label>
+    <md-select name="singleSelect" ng-model="commisioning.accessarea" required>
+      <md-option value="Head Office">Head Office</md-option>
+      <md-option value="Site">Site</md-option>
+      <md-option value="Location 1">Location 1</md-option>
+      <md-option value="Location 2">Location 2</md-option>
+      <md-option value="Location 3">Location 3</md-option>
+    </md-select>
+  </md-input-container>
+</div>
+<md-input-container class="md-block">
+  <label>Status</label>
+  <md-select name="singleSelect" ng-model="commisioning.status" required>
+    <md-option value="a">Active</md-option>
+    <md-option value="d">Deactive</md-option>
+    <md-option value="g">Grounded</md-option>
+  </md-select>
+</md-input-container>
+
+  <md-input-container class="md-block">
+    <label>Document's Type</label><br/><br/>
+    <md-checkbox ng-repeat="item in assetType" ng-model="commisioning.doctype[$index]" ng-true-value="'{{ item }}'" ng-false-value="''" required>
+      {{ item }}
+    </md-checkbox>
+  </md-input-container>
+
+<md-card-action>
+<input class="ng-hide" id="input-file-id" type="file" ng-model="identities.document"/>
+<label for="input-file-id" class="md-button md-raised md-primary">Upload</label>
+</md-card-action>

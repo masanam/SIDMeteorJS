@@ -1,0 +1,47 @@
+<section ng-init="findOne()" layout="row" flex>
+
+  <div flex=15 ng-include="'/client/modules/violations/views/_filter.partial.html'">
+  </div>
+
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column ng-if="violations.length==0" style="text-align:center;" colspan="6">No Violation Data</th>
+            <th ng-if="violations.length!=0" md-column>Violation No </th>
+            <th ng-if="violations.length!=0;!display.id&&!display.employee" md-column>Employee ID </th>
+            <th ng-if="violations.length!=0" md-column>Name</th>
+            <th ng-if="violations.length!=0;!display.id&&!display.employee" md-column>Role</th>
+            <th ng-if="violations.length!=0;!display.id&&!display.employee" md-column>Team</th>
+            <th ng-if="violations.length!=0" md-column>Reporter</th>
+            <th ng-if="violations.length!=0" md-column>Date</th>
+            <th ng-if="violations.length!=0;!display.id&&!display.employee" md-column>Status</th>
+            <th ng-if="violations.length!=0" md-column></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="v in violations | orderBy: '-created'">
+            <td md-cell>{{v.violationNo}}</td>
+            <td md-cell ng-if="!display.id&&!display.employee"><employee-data field="employeeId" id="v.employee"></employee-data></td>
+            <td md-cell><a ui-sref="employees.view({ id: v.employee })"><employee-data field="name" id="v.employee"></employee-data></a></td>
+            <td md-cell ng-if="!display.id&&!display.employee"><employee-data field="roles" id="v.employee"></employee-data></td>
+            <td md-cell ng-if="!display.id&&!display.employee"><team id="v.team"></team></td>
+            <td md-cell><users id="v.creator"></users></td>
+            <td md-cell>{{v.created | date:'yyyy-MM-dd'}}</td>
+            <td md-cell ng-if="v.status==='p';!display.id&&!display.employee">Waiting your approval</td>
+            <td md-cell>
+              <md-button ng-class="display.id===v._id?'md-primary':''" class="md-icon-button" ui-sref="violations.view({ id: v._id, employee: v.employee })">
+                <md-icon md-svg-icon="eye"></md-icon>
+                <md-tooltip>View</md-tooltip>
+              </md-button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+  <div flex=50 ng-if="display.id&&display.employee" ng-include="'/client/modules/violations/views/detail.view.html'">
+  </div>
+</section>

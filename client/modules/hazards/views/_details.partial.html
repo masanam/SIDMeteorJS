@@ -1,0 +1,78 @@
+<md-card flex>
+  <md-card-title layout="row">
+    <md-card-title-text flex=25>
+      <span class="md-headline">{{ hazard.danger }}</span>
+    </md-card-title-text>
+    <span flex></span>
+    <md-card-actions layout="row" layout-align="end center" flex=30 style="margin-top:-5px;">
+      <md-button class="md-icon-button" ui-sref="hazards.update({ id: hazard._id })">
+        <md-icon md-svg-icon="pencil"></md-icon>
+        <md-tooltip>Edit</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="delete(hazard)">
+        <md-icon md-svg-icon="delete"></md-icon>
+        <md-tooltip>Delete</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ui-sref="hazards.list">
+        <md-icon md-svg-icon="close"></md-icon>
+        <md-tooltip>Back</md-tooltip>
+      </md-button>
+    </md-card-actions>
+  </md-card-title>
+
+  <md-divider></md-divider>
+
+</md-card>
+
+<div layout="row">
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column width="30%">Details</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row>
+            <td md-cell>Date</td>
+            <td md-cell>{{hazard.date | date}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Location</td>
+            <td md-cell>{{hazard.location}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Danger</td>
+            <td md-cell>{{hazard.danger}}</td>
+          </tr>
+
+          <tr md-row ng-if="hazard.violator">
+            <td md-cell>Violator</td>
+            <td md-cell>{{hazard.violator}}</td>
+          </tr>
+
+          <tr md-row ng-if="hazard.vdesc">
+            <td md-cell>Description</td>
+            <td md-cell>{{hazard.vdesc}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Action</td>
+            <td md-cell>{{hazard.action}}</td>
+          </tr>
+
+          <tr md-row ng-switch="hazard.status">
+            <td md-cell>Status</td>
+            <td md-cell ng-switch-when="a">Approved</td>
+            <td md-cell ng-switch-when="n">Not Approved</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+</div>

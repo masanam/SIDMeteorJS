@@ -1,0 +1,32 @@
+<div layout="row">
+  <md-button aria-label="home" class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="hazards.list">Hazards</md-button>
+
+  <span ng-if="hazard._id">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>{{ hazard.danger }} </md-button>
+  </span>
+
+  <span ng-if="!hazard._id && display.edit">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button ui-sref="hazards.create">CREATE</md-button>
+  </span>
+
+  <span ng-if="no">
+    <md-icon md-svg-icon="chevron-right"></md-icon>
+    <md-button>Details</md-button>
+  </span>
+
+
+  <span flex></span>
+  <md-button ui-sref="hazards.create">
+    <md-icon md-svg-icon="plus"></md-icon>
+    Add New
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<md-content flex ui-view layout="column">
+</md-content>

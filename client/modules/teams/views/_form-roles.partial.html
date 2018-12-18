@@ -1,0 +1,16 @@
+<fieldset ng-repeat="r in team.roles">
+  <legend>Roles & Privileges : {{ r.name }}</legend>
+  
+  <md-input-container>
+    <label>Role Name</label>
+    <input ng-model="r.name">
+  </md-input-container>
+  
+  <div layout="row" layout-wrap flex>
+    <div flex-gt-md=25 flex-gt-sm=33 flex=50 ng-repeat="privilege in privileges">
+      <md-checkbox ng-checked="r.privileges.indexOf(privilege) > -1" ng-click="toggle(privilege, r)">
+        {{ privilege }}
+      </md-checkbox>
+    </div>
+  </div>
+</fieldset>

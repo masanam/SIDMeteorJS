@@ -1,0 +1,60 @@
+<md-card class="md-no-whitespace">
+    <div layout="row" layout-padding>
+      <div flex>Filters</div>
+
+      <md-menu class=" md-condensed">
+        <md-button class="md-icon-button md-condensed" ng-click="$mdMenu.open()">
+          <md-icon md-svg-icon="dots-vertical"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="resetFilter()">
+              <md-icon md-svg-icon="restart"></md-icon>
+              Reset Filter
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="downloadXLS()">
+              <md-icon md-svg-icon="file-excel"></md-icon>
+              Download as XLS
+            </md-button>
+          </md-menu-item>
+          <md-divider></md-divider>
+          <md-menu-item>
+            <md-button ui-sref="commisionings.create">
+              <md-icon md-svg-icon="plus"></md-icon>
+              Create New
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+
+    <md-divider></md-divider>
+
+    <md-content layout-padding flex>
+      <md-switch ng-model="filter.creator" aria-label="filter-creator-visitor">
+        <span ng-if="filter.creator">Commisionings by You</span>
+        <span ng-if="!filter.creator">All Commisionings</span>
+      </md-switch>
+
+      <div>
+        <md-select ng-model="filter.status" placeholder="Filter By Status" flex>
+          <md-option value="">- Filter By Status -</md-option>
+          <md-option value="a">Active</md-option>
+          <md-option value="d">Deactive</md-option>
+          <md-option value="g">Grounded</md-option>
+        </md-select>
+
+        <md-input-container class="md-block" flex>
+          <label>Search By Inspector</label>
+          <input ng-model="filter.q">
+        </md-input-container>
+
+        <md-input-container class="md-block" flex>
+          <label>Search By Area</label>
+          <input ng-model="filter.accessarea">
+        </md-input-container>
+      </div>
+    </md-content>
+  </md-card>

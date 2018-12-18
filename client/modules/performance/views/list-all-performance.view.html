@@ -1,0 +1,15 @@
+<section  layout="row" ng-init="find()" flex>
+  <div flex=20 ng-include="'/client/modules/performance/views/_filter-all.partial.html'">
+  </div>
+
+  <md-card flex>
+    <md-table-container flex>
+
+      <div ng-if="!role" ng-include="'/client/modules/performance/views/list-report-employee.partial.html'"></div>
+
+      <div ng-if="role" ng-include="'/client/modules/performance/views/list-report-vendors.partial.html'"></div>
+
+    </md-table-container>
+  </md-card>
+
+</section>

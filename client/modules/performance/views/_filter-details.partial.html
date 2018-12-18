@@ -1,0 +1,55 @@
+<md-card class="md-no-whitespace">
+    <div layout="row" layout-padding>
+      <div flex>Filters</div>
+
+      <md-menu class=" md-condensed">
+        <md-button class="md-icon-button md-condensed" ng-click="$mdMenu.open()">
+          <md-icon md-svg-icon="dots-vertical"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="resetFilter()">
+              <md-icon md-svg-icon="restart"></md-icon>
+              Reset Filter
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="downloadXLS()">
+              <md-icon md-svg-icon="file-excel"></md-icon>
+              Download as XLS
+            </md-button>
+          </md-menu-item>
+          <md-divider></md-divider>
+        </md-menu-content>
+      </md-menu>
+    </div>
+
+    <md-divider></md-divider>
+
+    <md-content layout-padding flex>
+    <div>
+      <md-input-container class="md-block">
+        <label>Month </label>
+        <md-select ng-model="filter.month" ng-change="totalHours();">
+          <md-option ng-repeat="m in select.months" value="{{m}}">{{m}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Year</label>
+        <md-select ng-model="filter.year">
+          <md-option ng-repeat="y in select.years()" value="{{y}}">{{y}}</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+    </md-content>
+</md-card>
+
+<md-card>
+  <div layout="row" layout-padding>
+    <div ng-init="totalHours()" flex>
+      Total Hours :
+      {{hours.total / 60 / 60 / 1000 | number:0}}
+    </div>
+  </div>
+</md-card>

@@ -1,0 +1,65 @@
+<div >
+  <section ng-init="find(); findOne()" layout="row" flex>
+  <div flex=15 ng-include="'/client/modules/audits/views/_filter.partial.html'">
+  </div>
+
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Slated</th>
+            <th md-column ng-if="!filter.type">Observed</th>
+            <th md-column ng-if="filter.type">Inspected</th>
+            <th md-column ng-if="!filter.type">Observer</th>
+            <th md-column ng-if="filter.type">Inspector</th>
+            <th md-column>Location</th>
+            <th md-column ng-if="!display.id">Findings</th>
+            <th md-column>Status</th>
+
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-if="audits.length==0">
+            <td md-cell style="text-align:center;" colspan="6">No Observation Data</td>
+          </tr>
+          <tr md-row ng-repeat="aud in audits | orderBy:'slated'" ng-if="viewer(aud.viewers)">
+
+            <td md-cell>{{ aud.slated | date}}</td>
+            <td md-cell ng-if="!filter.type">{{ aud.observed }}</td>
+            <td md-cell ng-if="filter.type">{{ aud.inspected }}</td>
+            <td md-cell ng-if="!filter.type">{{ aud.observer }}</td>
+            <td md-cell ng-if="filter.type">{{ aud.inspector }}</td>
+            <td md-cell>{{ aud.location }}</td>
+            <td md-cell ng-if="!display.id"><p ng-repeat="finding in aud.findings">{{ finding }}<p></td>
+            <td md-cell ng-switch="aud.status">
+              <p ng-switch-when="c" ng-style="{color: 'green'}">{{'Clear'}}</p>
+              <p ng-switch-when="n" ng-style="{color: 'red'}">{{'Not Clear'}}</p>
+            </td>
+            <td md-cell>
+              <md-button ng-class="display.id === aud._id?'md-primary':''" class="md-icon-button" ui-sref="audits.view({ id:aud._id })">
+                <md-icon md-svg-icon="eye"></md-icon>
+                <md-tooltip>Audit Detail</md-tooltip>
+              </md-button>
+              <md-button class="md-icon-button" ng-if="editor(aud.editors)" ui-sref="audits.update({ id:aud._id })">
+                <md-icon md-svg-icon="pencil"></md-icon>
+                <md-tooltip>Edit</md-tooltip>
+              </md-button>
+              <md-button class="md-icon-button" ng-if="aud.creator === currentUser._id" ng-click="delete(aud)">
+                <md-icon md-svg-icon="delete"></md-icon>
+                <md-tooltip>Delete</md-tooltip>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="filter.limit" md-limit-options="[20, 50, 100]" md-page="filter.page" md-total="{{auditsCount}}" md-page-select></md-table-pagination>
+  </md-card>
+
+  <div flex=50 ng-if="display.id" ng-include="'/client/modules/audits/views/_details.partial.html'">
+  </div>
+
+  </section>
+</div>

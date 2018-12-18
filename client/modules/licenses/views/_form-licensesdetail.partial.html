@@ -1,0 +1,108 @@
+<div ng-repeat="d in license.details track by $index">
+
+  <div layout="row">
+    <md-input-container class="md-block" flex="95">
+      <label>License Type</label>
+      <md-select name="type" ng-model="d.type" required>
+        <md-option ng-repeat="type in select.licenseTypes" value="{{type}}">{{type}}</md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-button class="md-secondary md-icon-button" ng-click="deleteLicense($index)" layout-align="end start">
+      <md-icon md-svg-icon="close"></md-icon>
+    </md-button>
+  </div>
+
+  <div ng-if="d.type == 'SIMPER'">
+    <div layout="row" ng-repeat="gov in select.licenseGov">
+
+      <h3 ng-model="d.govdetails[$index].type" value="{{gov.type}}" flex="15">{{gov.type}}</h3>
+
+      <md-input-container class="md-block" flex="35">
+        <label>Police SIM ID</label>
+        <input ng-model="d.govdetails[$index].id" required>
+        <div ng-messages="projectForm.clientName.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+        <md-input-container class="md-block" flex="25">
+            <label>Police SIM Issue Date</label>
+            <md-datepicker ng-model="d.govdetails[$index].issue" ng-change="datePlus(d,$index)" md-current-view="year" md-placeholder="Issue Date"></md-datepicker>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex="25">
+          <label>Police SIM Due Date</label>
+          <md-datepicker ng-model="dateUntil[$index]" md-current-view="year" md-placeholder="Due Date" disabled></md-datepicker>
+        </md-input-container>
+
+    </div>
+
+
+    <div layout="row">
+      <md-input-container class="md-block" flex>
+        <label>SIMPER Type</label>
+        <md-select name="type" ng-model="d.simpertype" required>
+          <md-option ng-repeat="stype in select.simperTypes" value="{{stype}}">{{stype}}</md-option>
+        </md-select>
+        <div ng-messages="projectForm.clientName.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+    </div>
+
+    <div layout="row">
+      <md-input-container class="md-block" flex="50">
+        <label>SIMPER Issue Date</label>
+        <md-datepicker ng-model="d.simperissue" md-current-view="year" md-placeholder="Issue Date"></md-datepicker>
+      </md-input-container>
+
+      <md-input-container class="md-block" flex="50">
+        <label>SIMPER Due Date</label>
+        <md-datepicker ng-model="d.simperdue" md-current-view="year" md-placeholder="Due Date"></md-datepicker>
+      </md-input-container>
+    </div>
+
+      <md-divider ng-if="!$last"></md-divider>
+
+  </div>
+
+  <div ng-if="d.type == 'KIMPER' || d.type == 'Land Clearing' || d.type == 'Dumping' || d.type =='KIM'">
+    <div layout="row">
+      <h2>License Details</h2>
+    </div>
+
+    <div layout="row">
+      <md-input-container class="md-block" flex="50">
+          <label>License Number</label>
+          <input ng-model="d.id" required>
+          <div ng-messages="projectForm.clientName.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+      </md-input-container>
+
+      <md-input-container class="md-block" flex="50">
+          <label>Agency</label>
+          <input ng-model="d.agency" required>
+          <div ng-messages="projectForm.clientName.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+      </md-input-container>
+    </div>
+
+    <div layout="row">
+      <md-input-container class="md-block" flex="25">
+          <label>License Issue Date</label>
+          <md-datepicker ng-model="d.oissue" md-current-view="year" md-placeholder="Issue Date"></md-datepicker>
+      </md-input-container>
+
+      <md-input-container class="md-block" flex="25">
+        <label>License Due Date</label>
+        <md-datepicker ng-model="d.odue" md-current-view="year" md-placeholder="Due Date"></md-datepicker>
+      </md-input-container>
+    </div>
+
+    <md-divider ng-if="!$last"></md-divider>
+  </div>
+
+</div>

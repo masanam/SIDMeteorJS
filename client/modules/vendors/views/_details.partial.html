@@ -1,0 +1,115 @@
+<md-card flex>
+  <md-card-title layout="row">
+    <md-card-title-text flex=50>
+      <span class="md-headline">{{ vendor.name }}</span>
+    </md-card-title-text>
+    <span flex></span>
+    <md-card-actions layout="row" layout-align="end center" flex=30 style="margin-top:-5px;">
+      <md-button class="md-icon-button" ui-sref="vendors.update({ id: vendor._id })">
+        <md-icon md-svg-icon="pencil"></md-icon>
+        <md-tooltip>Edit</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="delete(vendor)">
+        <md-icon md-svg-icon="delete"></md-icon>
+        <md-tooltip>Delete</md-tooltip>
+      </md-button>
+    </md-card-actions>
+      <md-button class="md-icon-button" ui-sref="vendors.list">
+        <md-icon md-svg-icon="close"></md-icon>
+        <md-tooltip>Back</md-tooltip>
+      </md-button>
+    </md-card-actions>
+  </md-card-title>
+</md-card>
+
+<div layout="row">
+  <md-card flex>
+    <md-table-container flex>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column width="50%">Details</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row>
+            <td md-cell>Name</td>
+            <td md-cell>{{ vendor.name }} </td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Legal Name</td>
+            <td md-cell>{{vendor.legalName}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Website</td>
+            <td md-cell>{{vendor.website}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Industry</td>
+            <td md-cell>{{vendor.industry}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Address</td>
+            <td md-cell>{{vendor.address}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>City</td>
+            <td md-cell>{{vendor.city}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Region</td>
+            <td md-cell>{{vendor.region }}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Postal Code</td>
+            <td md-cell>{{vendor.postalCode}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Employee Count</td>
+            <td md-cell>{{vendor.employeeCount}}</td>
+          </tr>
+
+          <tr md-row>
+            <td md-cell>Status</td>
+            <!-- <td md-cell>{{ vendor.status === 'a' ? 'Active' : vendor.status === 's' ? 'Suspended' : '-' }}</td> -->
+            <td md-cell ng-switch="vendor.status">
+              <span ng-switch-when="a">Approved</span>
+              <span ng-switch-when="p">Pending</span>
+              <span ng-switch-when="r">Rejected</span>
+              <span ng-switch-when="c">Cancelled</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+
+  <div flex=30>
+    <md-card>
+      <div layout-padding>Approval Status</div>
+      <md-divider></md-divider>
+
+      <div ng-repeat="a in vendor.approvals">
+        <div layout-padding>
+          <vendor id="a.approver"></vendor>
+          {{ a.status == 'a' ? 'Approved' : a.status == 'r' ? 'Rejected' : 'Pending' }}
+        </div>
+        <md-divider></md-divider>
+      </div>
+
+      <div ng-if="!vendor.approvals" class="text-muted" layout-padding>
+        - No Approval Scheme -
+      </div>
+    </md-card>
+
+  </div>
+</div>

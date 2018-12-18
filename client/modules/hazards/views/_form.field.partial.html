@@ -1,0 +1,25 @@
+<div layout="row">
+  <md-input-container flex="50" >
+      <label>Location</label>
+    <input ng-model="hazard.location" required>
+  </md-input-container>
+  <md-input-container flex="50">
+      <label>Danger</label>
+    <input ng-model="hazard.danger" required>
+  </md-input-container>
+
+</div>
+
+<md-input-container class="md-block">
+    <label>Action Plan</label>
+  <textarea ng-model="hazard.action" md-maxlength="300" rows="2" md-select-on-focus required></textarea>
+</md-input-container>
+
+
+<md-input-container class="md-block">
+  <label>Approval Action Plan</label>
+  <md-select name="singleSelect" ng-model="hazard.status" required>
+    <md-option value="a">Approved</md-option>
+    <md-option value="n">Not Approved</md-option>
+  </md-select>
+</md-input-container>

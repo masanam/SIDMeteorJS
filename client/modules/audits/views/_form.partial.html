@@ -1,0 +1,20 @@
+  <md-content ng-controller="AuditFormController" ng-init="listArray()" layout-padding>
+
+    <md-input-container class="md-block">
+      <label>Audit Type</label>
+      <md-select name="singleSelect" ng-model="audit.type" required>
+        <md-option value="o">Observation</md-option>
+        <md-option value="i">Inspection</md-option>
+      </md-select>
+    </md-input-container>
+
+    <div ng-if="audit.type == 'o'">
+      <div ng-include="'client/modules/audits/views/_form.observation.partial.html'">
+      </div>
+    </div>
+
+    <div ng-if="audit.type == 'i'">
+      <div ng-include="'client/modules/audits/views/_form.inspection.partial.html'">
+    </div>
+
+  </md-content>

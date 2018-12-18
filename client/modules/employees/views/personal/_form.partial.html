@@ -1,0 +1,152 @@
+<div ng-if="!display.edit && employment.roles == 'admin'">
+  <user-autocomplete model="employee.user" obj="display.user" label="'User'" required="true"></user-autocomplete>
+</div>
+
+<div ng-if="employment.roles == 'badge-center'" layout="row">
+  <md-input-container class="md-block">
+    <label>Salutation</label>
+    <md-select ng-model="employee.salutation" required>
+      <md-option value="Dr.">Dr.</md-option>
+      <md-option value="Mr.">Mr.</md-option>
+      <md-option value="Mrs.">Mrs.</md-option>
+      <md-option value="Ms.">Ms.</md-option>
+      <md-option value="Prof.">Prof.</md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex ng-if="!employee.name">
+    <label>Name</label>
+    <input ng-model="employee.profile.name" required >
+  </md-input-container>
+
+  <md-input-container class="md-block" flex ng-if="employee.name">
+    <label>Name</label>
+    <input ng-model="employee.name" required >
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Surname</label>
+    <input ng-model="employee.surname">
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <label>Suffix</label>
+    <input ng-model="employee.suffix">
+  </md-input-container>
+</div>
+<div ng-if="employment.roles == 'badge-center' && state=='employees.create'">
+  <md-input-container class="md-block" flex>
+    <label>Email</label>
+    <input ng-model="employee.profile.email" type="email" required>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Phone</label>
+    <input ng-model="employee.profile.phone" required>
+  </md-input-container>
+</div>
+
+<div layout="row">
+  <md-input-container class="md-block" flex>
+    <label>Record Status</label>
+    <md-select ng-model="employee.status" required>
+      <md-option value="a">Currently Active</md-option>
+      <md-option value="l">On-Leave</md-option>
+      <md-option value="s">Suspended</md-option>
+      <md-option value="r">Resigned</md-option>
+      <md-option value="f">Fired</md-option>
+    </md-select>
+  </md-input-container>
+</div>
+
+<div layout="row" ng-if="employment.roles == 'admin'">
+  <md-input-container class="md-block">
+    <label>Salutation</label>
+    <md-select ng-model="employee.salutation" required>
+      <md-option value="Dr.">Dr.</md-option>
+      <md-option value="Mr.">Mr.</md-option>
+      <md-option value="Mrs.">Mrs.</md-option>
+      <md-option value="Ms.">Ms.</md-option>
+      <md-option value="Prof.">Prof.</md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Name</label>
+    <input ng-model="employee.name" required>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Surname</label>
+    <input ng-model="employee.surname">
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <label>Suffix</label>
+    <input ng-model="employee.suffix">
+  </md-input-container>
+</div>
+
+<div layout="row">
+  <md-input-container class="md-block" flex>
+    <label>Birth Place</label>
+    <input ng-model="employee.birthPlace" required>
+  </md-input-container>
+
+  <md-input-container>
+    <label>Birth Date</label>
+    <md-datepicker ng-model="employee.birthDate" required></md-datepicker>
+  </md-input-container>
+</div>
+
+<div layout="row">
+  <md-input-container class="md-block" flex>
+    <label>Marital Status</label>
+    <md-select ng-model="employee.marital">
+      <md-option value="s">Single</md-option>
+      <md-option value="m">Married</md-option>
+      <md-option value="d">Divorced</md-option>
+      <md-option value="w">Widowed</md-option>
+      <md-option value="o">Other</md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Gender</label>
+    <md-select ng-model="employee.gender">
+      <md-option value="m">Male</md-option>
+      <md-option value="f">Female</md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Blood Type</label>
+    <md-select ng-model="employee.blood">
+      <md-option value="a+">A+</md-option>
+      <md-option value="a-">A-</md-option>
+      <md-option value="b+">B+</md-option>
+      <md-option value="b-">B-</md-option>
+      <md-option value="o+">O+</md-option>
+      <md-option value="o-">O-</md-option>
+      <md-option value="ab+">AB+</md-option>
+      <md-option value="ab-">AB-</md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Nationality</label>
+    <input ng-model="employee.nationality">
+  </md-input-container>
+</div>
+
+<div layout="row">
+  <md-card-action class="md-block" flex>
+    <label>Employee's Photo</label><br>
+    <input class="ng-hide" id="input-file-id" type="file" ng-model="employee.photo"  />
+    <label for="input-file-id" class="md-button md-raised md-primary">Upload</label>
+  </md-card-action>
+</div>
+
+<div ng-if="display.error" class="error-notice">
+  {{ display.error }}
+</div>

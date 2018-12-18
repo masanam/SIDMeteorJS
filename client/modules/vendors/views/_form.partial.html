@@ -1,0 +1,82 @@
+<div layout="row">
+  <md-input-container class="md-block" flex=30>
+    <label>Vendor's Short Name / Callsign</label>
+    <input ng-model="vendor.name" required>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Vendor's Legal Name (PT. XYZ / ABC Pte Ltd)</label>
+    <input ng-model="vendor.legalName" required>
+  </md-input-container>
+</div>
+
+<div layout="row">
+  <md-input-container class="md-block" flex>
+    <label>Website</label>
+    <input ng-model="vendor.website" required>
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <label>Industry</label>
+    <md-select ng-model="vendor.industry" required>
+      <md-option value="">Others</md-option>
+      <md-option ng-value="i" ng-repeat="i in industries">{{ i }}</md-option>
+    </md-select>
+  </md-input-container>
+</div>
+
+<md-input-container class="md-block">
+  <label>Address</label>
+  <textarea ng-model="vendor.address" required></textarea>
+</md-input-container>
+
+<div layout="row">
+  <md-input-container class="md-block" flex>
+    <label>City</label>
+    <input ng-model="vendor.city" required>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Region / Province</label>
+    <input ng-model="vendor.region" required>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Country</label>
+    <input ng-model="vendor.country" required>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Postal Code</label>
+    <input ng-model="vendor.postalCode" required>
+  </md-input-container>
+</div>
+
+<div layout="row">
+  <md-input-container class="md-block">
+    <label>Employee Count</label>
+    <input ng-model="vendor.employeeCount" required>
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <label>Annual Revenue</label>
+    <input ng-model="vendor.annualRevenue" required>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Vendor's Description</label>
+    <textarea ng-model="vendor.notes" required></textarea>
+  </md-input-container>
+</div>
+
+<div layout="row">
+  <md-input-container class="md-block" flex>
+    <label>Status</label>
+    <md-select name="singleSelect" ng-model="vendor.status" required>
+      <md-option value="a">Approved</md-option>
+      <md-option value="p">Pending</md-option>
+      <md-option value="r">Rejected</md-option>
+      <md-option value="c">Cancelled</md-option>
+      </md-select>
+  </md-input-container>
+</div>

@@ -1,0 +1,85 @@
+<md-card flex>
+  <md-card-title layout="row">
+    <md-card-title-text flex>
+      <span class="md-headline"><employee id="license.employee"></employee></span>
+    </md-card-title-text>
+    <span flex></span>
+    <md-card-actions layout="row" layout-align="end center" flex=30 style="margin-top:-5px;">
+      <md-button class="md-icon-button" ui-sref="licenses.update({ id: license._id })">
+        <md-icon md-svg-icon="pencil"></md-icon>
+        <md-tooltip>Edit</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="delete(license)">
+        <md-icon md-svg-icon="delete"></md-icon>
+        <md-tooltip>Delete</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ui-sref="licenses.list">
+        <md-icon md-svg-icon="close"></md-icon>
+        <md-tooltip>Back</md-tooltip>
+      </md-button>
+    </md-card-actions>
+  </md-card-title>
+</md-card>
+
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" class="md-primary md-hue-2">
+      <md-tab ng-repeat="list in license.details" label="{{list.type}}">
+        <md-content class="md-padding">
+          <md-card flex>
+            <md-table-content flex>
+              <table md-table ng-if="list.type == 'SIMPER'">
+                <tbody md-body>
+                  <tr md-row>
+                    <td md-cell>SIMPER Type</td>
+                    <td md-cell>{{list.simpertype}}</td>
+                  </tr>
+
+                  <tr md-row>
+                    <td md-cell>SIMPER Validity</td>
+                    <td md-cell>{{list.simperissue | date}} ~ {{list.simperdue | date}}</td>
+                  </tr>
+              </tbody>
+          </table>
+
+          <md-divider></md-divider>
+              <md-content>
+                <md-list>
+                  <md-list-item class="md-2-line" ng-repeat="sim in list.govdetails track by $index">
+                    <div class="md-list-item-text">
+                      <h3>Police SIM {{sim.type}}</h3>
+                      <p ng-show="IsVisible[$index]">License ID : {{sim.id}}</p>
+                      <p ng-show="IsVisible[$index]">Validity : {{sim.issue | date}} ~ {{sim.dateUntil | date}}</p>
+                    </div>
+                    <md-button class="md-secondary" ng-click="ShowHide($index)">Show Details</md-button>
+
+                    <md-divider ng-if="!$last"></md-divider>
+
+                  </md-list-item>
+                </md-list>
+              </md-content>
+
+              <table md-table ng-if="list.type == 'KIMPER' || list.type == 'Land Clearing' || list.type == 'Dumping' || list.type =='KIM'">
+                <tbody md-body>
+                  <tr md-row>
+                    <td md-cell>License Number</td>
+                    <td md-cell>{{list.id}}</td>
+                  </tr>
+
+                  <tr md-row>
+                    <td md-cell>Agency</td>
+                    <td md-cell>{{list.agency}}</td>
+                  </tr>
+
+                  <tr md-row>
+                    <td md-cell>Validity</td>
+                    <td md-cell>{{list.oissue | date}} ~ {{list.odue | date}}</td>
+                  </tr>
+              </table>
+            </md-table-content>
+          </md-card>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

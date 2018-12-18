@@ -1,0 +1,25 @@
+<section layout="column" layout-align="center center">
+  <md-card flex=60>
+    <md-toolbar layout-align="center center">
+      <md-toolbar-tool>
+        <md-icon md-svg-icon="fingerprint"></md-icon>
+        Alteos SingleID
+      </md-toolbar-tool>
+    </md-toolbar>
+
+    <md-divider></md-divider>
+
+    <div class="callout callout-danger" ng-if="err">
+      {{ err.message }}
+      <!-- <form style="display:none" method="POST" action="{{redirect_url}}" id="fakeForm">
+       <input type="hidden" name="access_token" ng-value="{{access_token}}">     
+      </form> -->
+    </div>
+
+    <md-divider></md-divider>
+
+    <div layout="column" style="color:grey;" layout-padding>
+      <md-button ng-href="{{redirect_url}}" ng-click="authorize()">Authorize This App</md-button>
+    </div>
+  </md-card>
+</section>

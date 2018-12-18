@@ -1,0 +1,29 @@
+<md-card>
+  <md-card-header>
+    <md-card-avatar>
+      <img class="md-user-avatar" ng-src="{{currentUser.profile.image}}">
+    </md-card-avatar>
+    <md-card-header-text>
+      <h1 class="md-title">{{ currentUser.profile.name }}</h1>
+    </md-card-header-text>
+  </md-card-header>
+</md-card>
+
+<md-divider></md-divider>
+
+<div layout="row">
+  <md-button class="md-short-button" ui-sref="core.home"><md-icon md-svg-icon="home"></md-icon></md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="account.view">Account Settings</md-button>
+  <md-icon md-svg-icon="chevron-right"></md-icon>
+  <md-button ui-sref="account.teams" ng-if="display.id">Teams & Employment Settings</md-button>
+  <md-icon md-svg-icon="chevron-right" ng-if="display.id"></md-icon>
+  <md-button ng-disabled="true">{{ page.title }}</md-button>
+
+  <span flex></span>
+</div>
+
+<md-divider></md-divider>
+
+<md-content layout="column" ui-view flex>
+</md-content>

@@ -1,0 +1,57 @@
+<div layout-padding>
+  <div layout="row" class="visitor">
+    <md-input-container class="md-block" flex style="margin-left:-10px">
+      <label>Application Date</label>
+      <div flex-gt-xs>
+        <md-datepicker ng-model="visitor.slated" md-placeholder="Enter Date" name="dateFrom"></md-datepicker>
+      </div>
+    </md-input-container>
+
+    <md-input-container class="md-block" flex style="margin-left:-10px">
+      <label>Valid Until</label>
+      <div flex-gt-xs>
+        <md-datepicker ng-model="visitor.due" md-placeholder="Enter Date"></md-datepicker>
+      </div>
+    </md-input-container>
+  </div>
+  <div layout="row">
+    <md-input-container class="md-block" flex>
+      <label>Institution Name</label>
+      <input ng-model="visitor.institution" name="institution" required>
+    </md-input-container>
+
+    <md-input-container class="md-block" flex>
+      <label>Site/Area/Facility</label>
+      <md-select ng-model="visitor.facility" name="facility" required>
+        <md-option ng-repeat="facility in currentTeam.facilities" value="{{facility}}">{{facility}}</md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+
+  <div layout="row">
+  <md-input-container class="md-block" flex>
+    <label>Application Type </label>
+    <md-select name="singleSelect" ng-model="visitor.applicationType" required name="application">
+      <md-option value="new">New Application</md-option>
+      <md-option value="extend">Extended Application</md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Request Type</label>
+    <md-select name="singleSelect" ng-model="visitor.applicationReq" required name="request">
+      <md-option ng-repeat="request in currentTeam.clearanceTypes" value="{{request}}">{{request}}</md-option>
+    </md-select>
+  </md-input-container>
+  </div>
+
+  <md-input-container class="md-block">
+    <label>Visitor Type</label>
+    <md-select name="singleSelect" ng-model="visitor.type" required name="type">
+      <md-option ng-repeat="type in select.visitorTypes" value="{{type}}">{{type}}</md-option>
+    </md-select>
+  </md-input-container>
+
+  <employee-autocomplete model="visitor.sponsor" label="'Sponsor'" required="true"></employee-autocomplete>
+
+</div>

@@ -1,0 +1,68 @@
+<md-card class="md-no-whitespace" ng-init="changeType(auditType)">
+    <div layout="row" layout-padding>
+      <div flex>Filters</div>
+
+      <md-menu class=" md-condensed">
+        <md-button class="md-icon-button md-condensed" ng-click="$mdMenu.open()">
+          <md-icon md-svg-icon="dots-vertical"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="resetFilter()">
+              <md-icon md-svg-icon="restart"></md-icon>
+              Reset Filter
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="downloadXLS()">
+              <md-icon md-svg-icon="file-excel"></md-icon>
+              Download as XLS
+            </md-button>
+          </md-menu-item>
+          <md-divider></md-divider>
+        </md-menu-content>
+      </md-menu>
+    </div>
+
+    <md-divider></md-divider>
+
+    <md-content layout-padding flex>
+      <md-switch ng-model="filter.type" aria-label="filter-observe-inspect">
+        <span ng-if="!filter.type">Observation</span>
+        <span ng-if="filter.type">Inspection</span>
+      </md-switch>
+
+      <div>
+        <md-datepicker ng-model="filter.slated" style="margin-left:-20px" placeholder="Slated Date"></md-datepicker>
+
+        <md-datepicker ng-model="filter.due" style="margin-left:-20px" placeholder="Due Date"></md-datepicker>
+
+        <div ng-switch="auditType">
+          <div ng-switch-when="false">
+            <md-input-container class="md-block" flex>
+              <label>Search By Observed</label>
+              <input ng-model="filter.inspected">
+            </md-input-container>
+          </div>
+          <div ng-switch-when="true">
+            <md-input-container class="md-block" flex>
+              <label style="font-size:14px;">Search By Inspected</label>
+              <input ng-model="filter.inspected">
+            </md-input-container>
+          </div>
+        </div>
+
+          <md-input-container class="md-block" flex>
+            <label>Search By Findings</label>
+            <input ng-model="filter.findings">
+          </md-input-container>
+
+          <md-select ng-model="filter.status" placeholder="Search By Status">
+            <md-option value="">- Search By Status -</md-option>
+            <md-option value="c">Clear</md-option>
+            <md-option value="n">Not Clear</md-option>
+          </md-select>
+      </div>
+
+    </md-content>
+</md-card>

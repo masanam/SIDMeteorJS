@@ -1,0 +1,73 @@
+<div layout-padding>
+  <div>
+    <md-input-container class="md-block">
+      <label>Employee ID / NIK / NIP</label>
+      <input ng-model="employee.employeeId">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Operating ID / Clearance ID</label>
+      <input ng-model="employee.operatingId">
+    </md-input-container>
+
+    <div ng-controller="vendorsController">
+      <md-input-container class="md-block">
+        <label>Vendor</label>
+        <md-select name="singleSelect" ng-model="employee.vendors">
+          <md-option ng-repeat="v in vendorss" value="{{v.name}}">{{v.name}}</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+
+
+  </div>
+
+  <div>
+    <md-input-container class="md-block">
+      <label>Job Title</label>
+      <input ng-model="employee.title">
+    </md-input-container>
+  </div>
+
+
+  <h1>EVERYTHING BELOW IS AN ARRAY </h1>
+
+  <div>
+    <md-input-container class="md-block">
+      <label>Job History</label>
+      <input ng-model="employee.history">
+    </md-input-container>
+
+    <div ng-controller="rolesController">
+      <md-input-container class="md-block">
+        <label>Roles</label>
+        <md-select name="singleSelect" ng-model="employee.roles">
+          <md-option ng-repeat="role in roless" value="{{role.name}}">{{role.name}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Roles</label>
+        <md-select name="singleSelect" ng-model="employee.privileges">
+          <md-option ng-repeat="privilege in privilegess" value="{{privilege.name}}">{{privilege.name}}</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+  </div>
+
+  <div>
+    <md-input-container class="md-block">
+      <label>Subordinates</label>
+      <input ng-model="employee.subordinates">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Supervisors</label>
+      <input ng-model="employee.supervisors">
+    </md-input-container>
+  </div>
+</div>
+
+<div ng-if="display.error" class="error-notice">
+  {{ display.error }}
+</div>

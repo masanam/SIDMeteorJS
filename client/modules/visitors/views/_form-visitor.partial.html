@@ -1,0 +1,57 @@
+<div ng-repeat="identities in visitor.identities track by $index" layout-padding>
+  <div layout="row" style="padding:10px">
+    <md-input-container class="md-block" flex>
+      <label>Name</label>
+      <input ng-model="identities.name" name="name" required>
+    </md-input-container>
+
+    <md-input-container class="md-block" flex>
+      <label>Position</label>
+      <input ng-model="identities.position" name="position" required>
+    </md-input-container>
+
+    <md-input-container class="md-block" flex="20">
+      <label>Age</label>
+      <input ng-model="identities.age" name="age" required ng-pattern="/^[0-9]*$/">
+    </md-input-container>
+  </div>
+
+  <div layout="row" style="padding:10px">
+    <md-input-container class="md-block" flex>
+      <label>Phone</label>
+      <input ng-model="identities.phone" required name="phone">
+    </md-input-container>
+
+    <md-input-container class="md-block" flex>
+      <label>Email</label>
+      <input ng-model="identities.email" required name="email" type="email">
+    </md-input-container>
+  </div>
+
+  <div layout="row" style="padding:10px">
+  <md-input-container class="md-block" flex>
+    <label>Address</label>
+    <textarea ng-model="identities.address" md-maxlength="300" rows="2" md-select-on-focus name="address" required></textarea>
+  </md-input-container>
+  </div>
+  <div layout="row" style="padding:10px">
+    <md-input-container class="md-block" flex>
+      <label>Identity Type</label>
+      <md-select ng-model="identities.identityType" name="identityType" required>
+        <md-option ng-repeat="identity in select.identityTypes" value="{{identity}}">{{identity}}</md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-input-container class="md-block" flex>
+      <label>Identity Number</label>
+      <input ng-model="identities.identityNo" required name="identityNo">
+    </md-input-container>
+  </div>
+
+  <md-card-action>
+  <label style="margin-left:15px">Proof of Identity</label>
+  <input class="ng-hide" id="input-file-id" type="file" ng-model="identities.uploadIdentity"/>
+  <label for="input-file-id" class="md-button md-raised md-primary">Upload</label>
+  </md-card-action>
+
+</div>

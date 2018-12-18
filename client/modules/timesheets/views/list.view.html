@@ -1,0 +1,60 @@
+<section ng-init="find()" layout="column" flex>
+  <div layout="row">
+    <md-button ng-click="toggleTray('projects')">
+      <md-icon md-svg-icon="menu"></md-icon>
+      Projects
+    </md-button>
+    <md-button ng-click="add()">
+      <md-icon md-svg-icon="plus"></md-icon>
+      Add Task
+    </md-button>
+
+    <span flex></span>
+
+    <md-button ng-click="display.sideTasks = 'i'; toggleTray('tasks')">
+      <md-icon md-svg-icon="inbox"></md-icon>
+      Idle
+    </md-button>
+    <md-button ng-click="display.sideTasks = 'f'; toggleTray('tasks')">
+      <md-icon md-svg-icon="checkbox-multiple-marked-circle"></md-icon>
+      Closed
+    </md-button>
+    <md-button ng-click="display.sideTasks = 'x'; toggleTray('tasks')">
+      <md-icon md-svg-icon="delete"></md-icon>
+      Archived
+    </md-button>
+  </div>
+
+  <div layout="row" flex style="background:#E0F2F1; color:#00796B;">
+    <div ng-repeat="ts in taskStatus" layout="row" flex>
+
+      <div layout="column" flex>
+        <div layout-padding>
+          <span class="md-heading">{{ ts.label }}</span>
+        </div>
+
+        <md-divider></md-divider>
+
+        <div dnd-list dnd-drop="onDrop(ts.status, item, index)" flex>
+          <md-card ng-repeat="task in tasks | filter:{ status: ts.status }" dnd-draggable="task">
+            <div layout="row">
+              <div layout-padding flex>{{ task.title }}</div>
+              <div layout-padding><project id="task.project"></project></div>
+            </div>
+            
+            <md-divider></md-divider>
+
+            <md-divider ng-if="task.assignees"></md-divider>
+            <div ng-if="task.assignees">
+              <md-button ng-repeat="assignee in task.assignees" class="md-short-button">
+                <employee id="assignee"></employee>
+              </md-button>
+            </div>
+          </md-card>
+        </div>
+      </div>
+
+      <md-divider></md-divider>
+    </div>
+  </div>
+</section>
